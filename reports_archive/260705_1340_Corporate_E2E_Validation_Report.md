@@ -105,21 +105,22 @@ flowchart TD
 
 ```
 ============================= test session starts =============================
-platform win32 -- Python 3.10.11, pytest-8.1.1, pluggy-1.4.0
+platform win32 -- Python 3.14.2, pytest-9.0.2, pluggy-1.6.0
 rootdir: E:\Github\SG_proj_014
 configfile: pyproject.toml
-plugins: anyio-4.14.0, asyncio-1.4.0, cov-7.1.0
-asyncio: mode=Mode.STRICT, debug=False
+plugins: anyio-4.13.0, hydra-core-1.3.2, hypothesis-6.152.7, asyncio-1.4.0, cov-7.1.0, typeguard-4.5.1
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
 collected 2 items
 
 cross_module_tests\test_e2e_pipeline.py ..                               [100%]
 
-============================== 2 passed in 12.35s ==============================
+============================= 2 passed in 16.71s ==============================
 ```
 
 #### 4.1. test_module_health_checks (PASSED)
 * 대상: 전 모듈 (002, 003, 004, 007, 011, 012, 013, 014, 001, 006, 009)
-* 내용: 모든 엔드포인트의 통신 상태와 서버 응답 상태가 정상임을 검증. (loguru 로깅을 통한 내부 디버깅 로그 출력 정상)
+* 내용: 모든 엔드포인트의 통신 상태와 서버 응답 상태가 정상임을 검증.
+* 특이사항 (해결됨): 최초 도커 컨테이너 기동 시, 비전 모듈(002, 003, 007) 내에서 `docker-compose.yml` 매핑(8000)과 각 모듈의 `Dockerfile` 실행 포트(8002, 8501, 8007)가 불일치하여 연결이 거부되는 오류가 발생하였으나, 모든 모듈의 내부 포트를 8000으로 통일하여 해결하였습니다. 또한 007 모듈의 대규모 AI 가중치 (SAM 2, Depth Anything V2) 다운로드 및 초기 로딩(Warm-up) 지연에 대비하여 헬스체크 타임아웃을 최대 300초(10초 대기 x 30회 재시도)로 연장 방어 로직을 적용한 끝에 실제 가동 환경에서 100% 통과(PASSED)를 달성했습니다.
 
 #### 4.2. test_full_pipeline_e2e (PASSED)
 * 내용: 입력된 표면 특성(SFE, Roughness, Curvature) 파라미터를 기반으로 가공성 판별, 자사 제품 추천 및 추천 제품을 초과하는 겔화 패널티가 이식된 AI 기반 역설계(Monomer Recipe) 예측 결과를 성공적으로 JSON 응답 처리함.
