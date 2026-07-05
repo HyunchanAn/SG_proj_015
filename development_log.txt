@@ -33,3 +33,17 @@
    - 012 및 013 모듈 페이로드를 변경된 target_initial_adhesion 기준으로 맵핑
 4. 검증 완료
    - cross_module_tests/test_schema_domain_rules.py 신규 작성 및 E2E 테스트(test_e2e_pipeline.py) Payload 변경 후 pytest 전면 통과 확인
+
+[2026-07-05 20:07:00]
+[작업 요약] CI/CD 파이프라인 연동 및 개발일지 인코딩 복구 완료
+[상세 내용]
+1. SG_proj_014 pyproject.toml 및 테스트 통합
+   - testpaths에 cross_module_tests 추가하여 pytest 기본 테스트에 이중 도메인 룰 검증 셋업 통합
+   - coverage omit 속성에 tests/*, cross_module_tests/*, SG_proj_*/* 마스킹 규칙 구성하여 커버리지 지표 왜곡 차단
+2. 단위 테스트 payload 수정
+   - tests/test_main.py 내 기존 unit test들의 mock 데이터 규격을 신규 스키마(substrate_series, thickness_um 및 initial/aged adhesion 분기)에 맞춰 갱신하여 422 validation error 차단 및 통과 완료
+3. 개발일지 인코딩 정밀 복구 스크립트 실행
+   - recover_logs.py 스크립트를 작성하여 라인 단위 순회 디코딩 적용
+   - SG_proj_001, 003, 006, 014, 015 내의 모든 development_log.txt를 유실 없이 UTF-8 포맷으로 통합 복구 완료
+4. CI/CD 원격 빌드 확인
+   - 원격 리포지토리에 push 후 GitHub Actions (SG_proj_014, SG_proj_001, SG_proj_003) 파이프라인 빌드 정상 통과(success) 완료
