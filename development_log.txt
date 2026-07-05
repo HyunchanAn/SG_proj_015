@@ -17,3 +17,19 @@
 [2026-07-05 16:50]
 - 3순위: GPU-Accelerated Containerization 적용 완료. 014 모듈의 docker-compose.yml 내 각 서비스에 GPU reservation을 추가하고 003 모듈의 Dockerfile 베이스를 nvidia/cuda로 변경함.
 - 4순위: 014 오케스트레이터의 Async Robustness(구조적 예외 처리, 중앙 집중형 로깅) 구현 완료.
+
+[2026-07-05 16:59:28]
+[작업 요약] 도메인 룰 기반 스키마 및 물리 보정 고도화 작업 완료
+[상세 내용]
+1. SG_proj_014 configs/config.json 및 src/config.py 수정
+   - SGV, SGO, SGE 계열별 두께 가중치 패널티 테이블 삽입 및 파싱 로직 추가
+2. SG_proj_014 src/schemas.py 보정
+   - OrchestrationRequest 모델에 substrate_series 및 thickness_um 필드 추가
+   - Step2Target을 target_initial_adhesion, target_aged_adhesion으로 세분화
+   - model_validator(mode='after')를 활용해 초기 점착력 <= 후기 점착력 물리 규칙 강제화 및 위배 시 loguru 에러 마킹
+   - target_tg 상한선을 le=0.0으로 제한하여 비점착성 플라스틱 수지 인입 원천 차단
+3. SG_proj_014 src/orchestrator.py 로직 갱신
+   - 011 Processability 모듈의 반환 등급에 config의 기재별 패널티를 정적 가감산(최종 1~5 캡) 처리
+   - 012 및 013 모듈 페이로드를 변경된 target_initial_adhesion 기준으로 맵핑
+4. 검증 완료
+   - cross_module_tests/test_schema_domain_rules.py 신규 작성 및 E2E 테스트(test_e2e_pipeline.py) Payload 변경 후 pytest 전면 통과 확인
