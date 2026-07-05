@@ -13,3 +13,7 @@
 [2026-07-05 16:20]
 - 014 오케스트레이터: test_e2e_pipeline.py에 respx 및 SQLAlchemy 인메모리 DB(sqlite:///:memory:) 기반의 테스트 격리 적용 완료.
 - 014 오케스트레이터: Pydantic schemas.py를 통해 도메인 특화 유효성 검증(조도, 광택도, Tg 등) 강화 및 커스텀 에러 메시지 임베딩.
+
+[2026-07-05 16:50]
+- 3순위: GPU-Accelerated Containerization 적용 완료. 014 모듈의 docker-compose.yml 내 각 서비스에 GPU reservation을 추가하고 003 모듈의 Dockerfile 베이스를 nvidia/cuda로 변경함.
+- 4순위: 014 오케스트레이터의 Async Robustness(구조적 예외 처리, 중앙 집중형 로깅) 구현 완료.
