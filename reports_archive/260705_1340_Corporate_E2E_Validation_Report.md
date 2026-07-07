@@ -2,8 +2,6 @@
 
 ## 작성일: 2026-07-05 13:40
 
-## 작성자: 안현찬 (Hyunchan An)
-
 ***
 
 ### 1. 개요 (Executive Summary)
