@@ -1,0 +1,270 @@
+
+=========================================
+Repo: e:\Github\SG_proj_001
+=========================================
+Found 36 commits for development_log.txt
+  Commit 5fe33529 (docs: recover development log to clean UTF-8):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log', '', '## 2026-02-11']
+  Commit c1ca092b (chore: Apply loguru logging and E2E validation report):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit e94d8039 (feat: Integrate real AI loop for reverse engineering (001, 009, 013, 014)):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit f0453347 (fix: Resolve priority bugs from 260627 analysis report):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit b4799499 (docs: standardize development log format and clean typography):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log', '', '## 2026-02-11']
+  Commit 6d9c2c5b (chore: clean up temporary build files and update dev log):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+
+=========================================
+Repo: e:\Github\SG_proj_002
+=========================================
+Found 40 commits for development_log.txt
+  Commit 14e9576c (docs: recover Korean encoding in development_log to UTF-8):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# 개발 로그 (Development Log)', '', '## 2026-05-15']
+  Commit 6da46c39 (fix: resolve E2E timeout and docker port mismatch issues):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit fddabefb (chore: Apply loguru logging and E2E validation report):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# 개발 로그 (Development Log)', '', '## 2026-05-15']
+  Commit 1f24562f (docs: standardize development log format and clean typography):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# 개발 로그 (Development Log)', '', '## 2026-05-15']
+  Commit 50ff00d6 (chore: clean up temporary build files and update dev log):
+    UTF-8: DecodeErr=False, ReplacementCount=271
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# 개발 로그 (Development Log)', '', '##### 2026-05-21 #####']
+  Commit b95f9e11 (chore: Apply massive architecture standardization (library, docker, READMEs)):
+    UTF-8: DecodeErr=False, ReplacementCount=271
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# 개발 로그 (Development Log)', '', '##### 2026-05-21 #####']
+
+=========================================
+Repo: e:\Github\SG_proj_003
+=========================================
+Found 36 commits for development_log.txt
+  Commit babc5722 (docs: recover development log to clean UTF-8):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# V-SAMS Development Log', '', '## 2026-01-04']
+  Commit 88c59ea9 (feat: apply GPU acceleration to Dockerfile and update README):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit f9636419 (fix: resolve E2E timeout and docker port mismatch issues):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit f41d7708 (fix: Resolve priority bugs from 260627 analysis report):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# V-SAMS Development Log', '', '## 2026-01-04']
+  Commit b43a05a4 (docs: standardize development log format and clean typography):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# V-SAMS Development Log', '', '## 2026-01-04']
+  Commit 32cc67f7 (chore: clean up temporary build files and update dev log):
+    UTF-8: DecodeErr=False, ReplacementCount=67
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# V-SAMS Development Log', '', '##### 2026.06.26 (마감 예측 로직 모듈 분리 및 측정 전용화) #####']
+
+=========================================
+Repo: e:\Github\SG_proj_004
+=========================================
+Found 49 commits for development_log.txt
+  Commit 9a9bff35 (docs: recover Korean encoding in development_log to UTF-8):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log', '', '## 2026-06-22']
+  Commit 4150fdb1 (chore: Apply loguru logging and E2E validation report):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit 9424c3f3 (chore: Update development log for CI/CD pipeline fix):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit a5d94e1a (feat: Integrate 012 matching engine directly with 004 DB API):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log', '', '## 2026-06-22']
+  Commit eaf8933c (fix: Address external review concerns regarding E2E pipeline and Mock DB):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log', '', '## 2026-06-22']
+  Commit 1a126eff (docs: standardize development log format and clean typography):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log', '', '## 2026-06-22']
+
+=========================================
+Repo: e:\Github\SG_proj_006
+=========================================
+Found 20 commits for development_log.txt
+  Commit 74a467ec (docs: recover development log to clean UTF-8):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Project Development Log - SG_proj_006', '', '## 2023-01-10']
+  Commit e1c3aed3 (chore: Apply loguru logging and E2E validation report):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Project Development Log - SG_proj_006', '', '## 2023-01-10']
+  Commit 8090ed8d (docs: standardize development log format and clean typography):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Project Development Log - SG_proj_006', '', '## 2023-01-10']
+  Commit 6f0cafa8 (chore: clean up temporary build files and update dev log):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Project Development Log - SG_proj_006', '', '[2026-05-19 09:15]']
+  Commit b390c6c0 (Exclude core files from mypy to bypass rdkit stubs syntax error):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Project Development Log - SG_proj_006', '', '[2026-05-19 09:15]']
+  Commit 2cefb537 (Skip rdkit imports in mypy config to avoid rdkit-stubs syntax errors):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Project Development Log - SG_proj_006', '', '[2026-05-19 09:15]']
+
+=========================================
+Repo: e:\Github\SG_proj_007
+=========================================
+Found 27 commits for development_log.txt
+  Commit 78f34cb7 (docs: recover Korean encoding in development_log to UTF-8):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log: SG-TERRA (SG_proj_007)', '', '## 2026-03-16']
+  Commit 3d96825b (fix: resolve E2E timeout and docker port mismatch issues):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit 6ff86fa1 (chore: Apply loguru logging and E2E validation report):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log: SG-TERRA (SG_proj_007)', '', '## 2026-03-16']
+  Commit 522625a0 (docs: standardize development log format and clean typography):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log: SG-TERRA (SG_proj_007)', '', '## 2026-03-16']
+  Commit 67d64db7 (chore: clean up temporary build files and update dev log):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log: SG-TERRA (SG_proj_007)', '', '## 2026-03-16']
+  Commit 4941b5df (fix: Resolve CI/CD failures, align setuptools and linter configs):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log: SG-TERRA (SG_proj_007)', '', '## 2026-03-16']
+
+=========================================
+Repo: e:\Github\SG_proj_011
+=========================================
+Found 9 commits for development_log.txt
+  Commit 56bd0c86 (docs: recover Korean encoding in development_log to UTF-8):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log - SG_proj_011 (Processability Predictor)', '', '## 2026-06-22']
+  Commit 19a04385 (chore: Apply loguru logging and E2E validation report):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit 608d8ad0 (chore: Update development log for CI/CD pipeline fix):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit 9de47732 (fix: Resolve priority bugs from 260627 analysis report):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log - SG_proj_011 (Processability Predictor)', '', '## 2026-06-22']
+  Commit c293b854 (docs: standardize development log format and clean typography):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log - SG_proj_011 (Processability Predictor)', '', '## 2026-06-22']
+  Commit e8750414 (chore: clean up temporary build files and update dev log):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['2026-06-22', '- 프로젝트 초기화: SG_proj_011 (필요 가공성 수준 판별 모듈)', '- 디렉토리 구조 설정: src/, tests/, docs/ 적용 (표준 템플릿 준수)']
+
+=========================================
+Repo: e:\Github\SG_proj_012
+=========================================
+Found 11 commits for development_log.txt
+  Commit 1595d779 (docs: recover Korean encoding in development_log to UTF-8):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log - SG_proj_012 (Adhesive Matcher)', '', '## 2026-06-22']
+  Commit 832b0f83 (chore: Apply loguru logging and E2E validation report):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit 4d909ae9 (chore: Update development log for CI/CD pipeline fix):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit da3a4dce (feat: Integrate 012 matching engine directly with 004 DB API):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit 7d281860 (fix: Resolve priority bugs from 260627 analysis report):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit 997e2054 (fix: Address external review concerns regarding E2E pipeline and Mock DB):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log - SG_proj_012 (Adhesive Matcher)', '', '## 2026-06-22']
+
+=========================================
+Repo: e:\Github\SG_proj_014
+=========================================
+Found 23 commits for development_log.txt
+  Commit ae4f562d (docs: log Step 3 integration and n parameter verification in development_log):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log - SG_proj_014 (Orchestrator)', '', '## 2026-06-26']
+  Commit 6bbd5d38 (ci: integrate cross_module_tests into pytest configuration and add coverage omit masks):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log - SG_proj_014 (Orchestrator)', '', '## 2026-06-26']
+  Commit 69271362 (feat: apply GPU acceleration and structured exception handling):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit 9ce322b2 (feat: in-memory sqlite test isolation and strict domain pydantic schemas):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit ff566d96 (fix: resolve E2E timeout and docker port mismatch issues):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+  Commit 0b29a8da (chore: Apply loguru logging and E2E validation report):
+    UTF-8: DecodeErr=True, ReplacementCount=-1
+    CP949: DecodeErr=True, ReplacementCount=-1
+
+=========================================
+Repo: e:\Github\SG_proj_015
+=========================================
+Found 10 commits for development_log.txt
+  Commit 07ebf377 (docs: log PPTX slide updates with latest domain and infrastructure outcomes):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log', '', '[2026-06-26]']
+  Commit 03dcd735 (docs: append Step 3 integration and n parameter verification log to development_log):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log', '', '[2026-06-26]']
+  Commit 9b135ba6 (docs: log CI/CD integration and log recovery in development_log):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log', '', '[2026-06-26]']
+  Commit 5e3b96a2 (docs: append domain rules and schema enhancement log to development_log):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log', '', '[2026-06-26]']
+  Commit 5d8fae5d (docs: new E2E Validation Report and integrated dev logs):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log', '', '[2026-06-26]']
+  Commit 3ee4a127 (fix: resolve encoding corruption and restore development log):
+    UTF-8: DecodeErr=False, ReplacementCount=0
+    CP949: DecodeErr=True, ReplacementCount=-1
+    UTF-8 preview: ['# Development Log', '', '[2026-06-26]']
