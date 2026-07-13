@@ -1,6 +1,9 @@
+![Status](https://img.shields.io/badge/Status-v1.0%20Release-brightgreen) ![Python](https://img.shields.io/badge/Python-3.12%2B-blue) ![Backend](https://img.shields.io/badge/Backend-FastAPI-red) ![UI](https://img.shields.io/badge/UI-Streamlit-orange) ![CI/CD Pipeline](https://img.shields.io/badge/CI%2FCD%20Pipeline-passing-brightgreen?logo=github)
+
 # 통합 표면 분석 플랫폼 데이터 관제탑 및 E2E 아카이브 허브
 
 본 프로젝트는 통합 표면 분석 플랫폼(001~014 마이크로서비스 연동)의 E2E 테스트용 실측 이미지 데이터셋을 중앙 공급하고, 매 테스트 시 생성되는 전체 E2E 통합 검증 보고서 및 계측 시각화 사진들을 체계적으로 축적 및 보존하는 플랫폼의 데이터 관제탑 역할을 수행합니다. 또한 통합 표면 분석 플랫폼의 전체 시스템 데이터 흐름을 체계적으로 정리하여 기술하고, 주요 모듈별 역할 및 데이터 처리 흐름을 상세히 기술합니다.
+
 
 ## 시스템 전체 데이터 제어 및 마이크로서비스 모듈 흐름도 (Mermaid)
 
@@ -129,3 +132,20 @@ flowchart TD
 
 ## 2026-07-05 업데이트 (통합)
 - 전 모듈 GPU 가속 컨테이너화 및 014 비동기 안정성 확보 완료.
+
+## 2026-07-13 업데이트 (임시 시연 UI 추가)
+- E2E 통합 파이프라인 시연을 위한 임시 UI 대시보드(demo_ui/)를 개발 완료했습니다. 
+
+## 설치 및 실행 방법
+1. 가상환경 활성화 및 필요 의존성 패키지 설치
+   ```bash
+   cd e:/Github/SG_proj_015/demo_ui
+   pip install -r requirements.txt
+   ```
+2. 시연 UI 실행 (배치 파일 이용 또는 streamlit 실행 명령)
+   - e:/Github/SG_proj_015/demo_ui/run_ui.bat 파일을 더블 클릭하여 실행하거나, 터미널에서 다음 명령어를 입력합니다.
+   ```bash
+   streamlit run app.py
+   ```
+3. Docker Desktop 및 로컬 마이크로서비스 구동 상태가 ONLINE으로 확인되면 정상적으로 시연 조작이 가능합니다.
+
