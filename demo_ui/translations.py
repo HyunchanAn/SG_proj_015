@@ -185,7 +185,7 @@ TRANSLATIONS = {
         "score_label": "매칭 스코어",
         "match_details_label": "매칭 정합 사유",
         "db_failed": "적합 기성 제품 검색에 실패했습니다. SFE, 조도 및 가공성 한계를 동시에 충족하는 제품이 없어 AI 역설계 루프로 연동합니다.",
-        "inverse_title": "모노머 배합 처방 최적화 (3단계: 001 + 009 + 013)",
+        "inverse_title": "모노머 배합 처방 최적화 (3단계: 001 + 006 + 009 + 013)",
         "conv_status": "역설계 최적화 수렴 상태",
         "verdict_label": "최종 검증 판정",
         "verdict_passed": "🟢 검증 통과 (VERIFIED / PASSED)",

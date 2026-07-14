@@ -45,7 +45,7 @@ def start_local_orchestrator():
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.settimeout(1.0)
-            if s.connect_ex(('127.0.0.1', 8014)) == 0:
+            if s.connect_ex(('127.0.0.1', 8024)) == 0:
                 logger.info("Local orchestrator is already running.")
                 return True
     except Exception:
@@ -474,7 +474,7 @@ def trigger_all_metrology_analyses_automatically(preset_name: str):
     }
     
     st.session_state["payload_sent"] = payload
-    orchestrator_url = "http://localhost:8014/orchestrate"
+    orchestrator_url = "http://localhost:8024/orchestrate"
     try:
         res = requests.post(orchestrator_url, json=payload, timeout=30.0)
         if res.status_code == 200:

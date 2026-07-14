@@ -121,7 +121,7 @@ def render_input_panel(t):
             }
 
             st.session_state["payload_sent"] = payload
-            orchestrator_url = "http://localhost:8014/orchestrate"
+            orchestrator_url = "http://localhost:8024/orchestrate"
 
             with st.spinner(t["trigger_spinner"]):
                 try:

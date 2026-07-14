@@ -42,9 +42,15 @@ except ImportError:
 
 def render_results_panel(t):
     from core.api_client import trigger_all_metrology_analyses_automatically
+    selected_lang = st.session_state.get("language", "EN")
     st.header(t["result_title"])
 
-    result = st.session_state["pipeline_result"]
+    result = st.session_state.get("pipeline_result")
+    
+    if not result:
+        st.info("결과 대기 중입니다. 분석을 실행해주세요.")
+        return
+        
     status = result.get("status", "error")
 
     if status == "matched":
@@ -125,7 +131,7 @@ def render_results_panel(t):
                     st.markdown(f"""
                     <div class="status-card" style="border-top: 5px solid #2ecc71;">
                         <h4 style="margin: 0; color: #2ecc71;">{t['rank_label']} {idx+1}: {rec.get('product_code')}</h4>
-                        <p style="font-size: 1.3rem; font-weight: 600; margin: 0.5rem 0;">{t['score_label']}: {rec.get('match_score'):.2%}</p>
+                        <p style="font-size: 1.3rem; font-weight: 600; margin: 0.5rem 0;">{t['score_label']}: {rec.get('match_score'):.2f}%</p>
                         <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">{t['match_details_label']}:</div>
                     </div>
                     """, unsafe_allow_html=True)

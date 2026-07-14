@@ -402,7 +402,7 @@ def calculate_local_terra_curvature(img_rgb: np.ndarray, target_mask: np.ndarray
         analyzer = CurvatureAnalyzer(smoothing_sigma=2.0)
         
         gaussian_c = analyzer.calculate_gaussian_curvature(depth_map, mask=target_mask)
-        critical_coords = analyzer.find_critical_points(gaussian_c, mask=target_mask, top_k=1)
+        critical_vals, critical_coords = analyzer.find_critical_points(gaussian_c, mask=target_mask, top_k=1)
         
         if critical_coords:
             cy, cx = critical_coords[0]

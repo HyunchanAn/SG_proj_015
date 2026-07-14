@@ -55,7 +55,7 @@ def check_service_status() -> dict[str, bool]:
         "011 (Processability)": 8011,
         "012 (Matching Engine)": 8012,
         "013 (QA Gateway)": 8013,
-        "014 (Orchestrator)": 8014
+        "014 (Orchestrator)": 8024
     }
     
     status_results = {}
