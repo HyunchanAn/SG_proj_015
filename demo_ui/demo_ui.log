@@ -11,63 +11,110 @@
             
 /opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (7.4.3)/charset_normalizer (3.4.4) doesn't match a supported version!
   warnings.warn(
-2026-07-14 11:32:17.256 | INFO     | __main__:trigger_all_metrology_analyses_automatically:413 - Triggering auto-metrology analyses for preset: HL
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-2026-07-14 11:32:27.820 | DEBUG    | deepdrop_sfe.physics_engine:calculate_contact_angle:131 - Solving contact angle: droplet V: 2.0 uL, contact radius r: 12.0379 mm
-2026-07-14 11:32:27.822 | INFO     | deepdrop_sfe.physics_engine:calculate_contact_angle:184 - Numerical solver converged. Solved Theta: 0.0836 degrees
-2026-07-14 11:32:30.532 | DEBUG    | deepdrop_sfe.physics_engine:calculate_contact_angle:131 - Solving contact angle: droplet V: 2.0 uL, contact radius r: 12.0396 mm
-2026-07-14 11:32:30.533 | INFO     | deepdrop_sfe.physics_engine:calculate_contact_angle:184 - Numerical solver converged. Solved Theta: 0.0836 degrees
-2026-07-14 11:32:30.535 | INFO     | deepdrop_sfe.physics_engine:calculate_owrk:234 - OWRK regression computed successfully. Total SFE: 74.3442 mN/m (Dispersive: 13.1692, Polar: 61.1750)
-2026-07-14 11:32:30.658 | INFO     | vsams.analysis.surface_evaluator:analyze:45 - V-SAMS: Starting surface analysis.
-2026-07-14 11:32:30.676 | INFO     | vsams.analysis.surface_evaluator:_auto_detect_boxes:242 - V-SAMS: Coin automatically located. Coin box: [1021, 616, 2169, 1764], Ref box: [1021, 1820, 2169, 2968]
-2026-07-14 11:32:30.695 | INFO     | vsams.analysis.surface_evaluator:_estimate_roughness_and_gloss:311 - V-SAMS: Estimated physical attributes - Roughness Ra: 0.0928 um, Gloss: 28.4 GU (SharpRatio: 1.0122)
-2026-07-14 11:32:30.746 | INFO     | sg_terra.seg.sam2_wrapper:__init__:32 - Initializing SAM 2 Wrapper on device: mps
-2026-07-14 11:32:30.746 | INFO     | sg_terra.topo.depth_wrapper:__init__:32 - Initializing Depth-Anything-V2 Wrapper on device: mps
-2026-07-14 11:32:30.746 | INFO     | sg_terra.seg.sam2_wrapper:load_model:56 - Loading SAM 2 checkpoints from /Users/hyunchanan/Documents/GitHub/SG_proj_007/models/sam2/sam2_hiera_small.pt...
-2026-07-14 11:32:31.045 | ERROR    | utils:get_cached_models_007:92 - Failed to initialize 007 AI models: [Errno 2] No such file or directory: '/Users/hyunchanan/Documents/GitHub/SG_proj_007/models/sam2/sam2_hiera_small.pt'
-2026-07-14 11:32:35.627 | ERROR    | __main__:trigger_all_metrology_analyses_automatically:601 - Auto E2E pipeline trigger failed: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
-2026-07-14 11:32:35.767 Please replace `use_container_width` with `width`.
+2026-07-14 15:08:55.569 | INFO     | core.api_client:start_local_orchestrator:49 - Local orchestrator is already running.
+2026-07-14 15:08:55.632 | INFO     | core.api_client:start_local_orchestrator:49 - Local orchestrator is already running.
+2026-07-14 15:08:55.639 | INFO     | core.api_client:trigger_all_metrology_analyses_automatically:295 - Triggering auto-metrology analyses for preset: HL
+2026-07-14 15:09:06.158 | DEBUG    | deepdrop_sfe.physics_engine:calculate_contact_angle:131 - Solving contact angle: droplet V: 200.0 uL, contact radius r: 5.4400 mm
+2026-07-14 15:09:06.159 | INFO     | deepdrop_sfe.physics_engine:calculate_contact_angle:184 - Numerical solver converged. Solved Theta: 68.7548 degrees
+2026-07-14 15:09:08.965 | DEBUG    | deepdrop_sfe.physics_engine:calculate_contact_angle:131 - Solving contact angle: droplet V: 200.0 uL, contact radius r: 4.6174 mm
+2026-07-14 15:09:08.965 | INFO     | deepdrop_sfe.physics_engine:calculate_contact_angle:184 - Numerical solver converged. Solved Theta: 88.8310 degrees
+2026-07-14 15:09:08.967 | INFO     | deepdrop_sfe.physics_engine:calculate_owrk:239 - OWRK regression computed successfully. Total SFE: 72.3786 mN/m (Dispersive: 0.0000, Polar: 72.3786)
+2026-07-14 15:09:09.086 | INFO     | vsams.analysis.surface_evaluator:analyze:45 - V-SAMS: Starting surface analysis.
+2026-07-14 15:09:09.107 | INFO     | vsams.analysis.surface_evaluator:_auto_detect_boxes:242 - V-SAMS: Coin automatically located. Coin box: [1021, 616, 2169, 1764], Ref box: [1021, 1820, 2169, 2968]
+2026-07-14 15:09:09.127 | INFO     | vsams.analysis.surface_evaluator:_estimate_roughness_and_gloss:320 - V-SAMS: Estimated physical attributes - Roughness Ra: 0.1956 um, Gloss: 265.6 GU (SharpRatio: 1.0122)
+2026-07-14 15:09:09.175 | INFO     | sg_terra.seg.sam2_wrapper:__init__:32 - Initializing SAM 2 Wrapper on device: mps
+2026-07-14 15:09:09.175 | INFO     | sg_terra.topo.depth_wrapper:__init__:32 - Initializing Depth-Anything-V2 Wrapper on device: mps
+2026-07-14 15:09:09.175 | INFO     | sg_terra.seg.sam2_wrapper:load_model:56 - Loading SAM 2 checkpoints from /Users/hyunchanan/Documents/GitHub/SG_proj_007/models/sam2/sam2_hiera_large.pt...
+2026-07-14 15:09:11.572 | INFO     | sg_terra.seg.sam2_wrapper:load_model:63 - SAM 2 checkpoints loaded successfully in 2396.80 ms.
+WARNING:dinov2:xFormers not available
+WARNING:dinov2:xFormers not available
+2026-07-14 15:09:11.578 | INFO     | sg_terra.topo.depth_wrapper:load_model:67 - Loading Depth-Anything-V2 checkpoints from /Users/hyunchanan/Documents/GitHub/SG_proj_007/models/depth_anything_v2/depth_anything_v2_vitl.pth...
+2026-07-14 15:09:16.097 | INFO     | sg_terra.topo.depth_wrapper:load_model:73 - Depth-Anything-V2 loaded successfully in 4519.62 ms.
+2026-07-14 15:09:17.221 | INFO     | sg_terra.seg.sam2_wrapper:segment_target:96 - SAM 2 segmentation complete. Mask shape: (750, 1000), Confidence Score: 0.9326, Latency: 88.71 ms
+2026-07-14 15:09:17.934 | INFO     | sg_terra.topo.depth_wrapper:estimate_depth:100 - Depth estimation complete. Depth map shape: (750, 1000), Latency: 689.80 ms
+2026-07-14 15:09:17.958 | INFO     | sg_terra.curv.curvature:calculate_gaussian_curvature:49 - Gaussian curvature computation complete. Shape: (750, 1000)
+2026-07-14 15:09:17.959 | DEBUG    | sg_terra.curv.curvature:find_critical_points:91 - Locating top-1 critical stress points in curvature map.
+2026-07-14 15:09:17.980 | INFO     | sg_terra.curv.curvature:find_critical_points:105 - Top critical point identified. Max curvature value: 0.018821 at coordinate (np.int64(298), np.int64(666))
+2026-07-14 15:09:17.980 | ERROR    | utils:calculate_local_terra_curvature:418 - Local curvature evaluation failed: not enough values to unpack (expected 2, got 1)
+2026-07-14 15:09:19.262 | ERROR    | core.api_client:trigger_all_metrology_analyses_automatically:483 - Auto E2E pipeline trigger failed: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-07-14 15:09:19.444 | INFO     | core.api_client:start_local_orchestrator:49 - Local orchestrator is already running.
+2026-07-14 15:09:19.457 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-07-14 11:32:35.838 Please replace `use_container_width` with `width`.
+2026-07-14 15:09:19.545 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-07-14 11:32:35.900 Please replace `use_container_width` with `width`.
+2026-07-14 15:09:19.609 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-07-14 11:32:35.966 Please replace `use_container_width` with `width`.
+2026-07-14 15:09:19.675 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-07-14 11:32:36.035 Please replace `use_container_width` with `width`.
+2026-07-14 15:09:19.744 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-07-14 11:32:36.098 Please replace `use_container_width` with `width`.
+2026-07-14 15:09:19.807 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-07-14 11:32:36.152 Please replace `use_container_width` with `width`.
+2026-07-14 15:09:19.865 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-07-14 11:32:36.154 Please replace `use_container_width` with `width`.
+2026-07-14 15:09:19.867 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
-2026-07-14 11:32:36.158 Please replace `use_container_width` with `width`.
+2026-07-14 15:09:19.872 Please replace `use_container_width` with `width`.
 
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 15:09:19.924 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+SAM 2.1 모델 (facebook/sam2.1-hiera-tiny)을 mps에서 로드 중...
+SAM 2.1 (facebook/sam2.1-hiera-tiny) 로드 완료.
+[31m──[0m[31m────────────────────────[0m[31m [0m[1;31mTraceback [0m[1;2;31m(most recent call last)[0m[31m [0m[31m─────────────────────────[0m[31m──[0m
+[31m [0m [2m/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/streamlit/runtime[0m [31m [0m
+[31m [0m [2m/scriptrunner/[0m[1mexec_code.py[0m:129 in exec_func_with_error_handling                      [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/streamlit/runtime[0m [31m [0m
+[31m [0m [2m/scriptrunner/[0m[1mscript_runner.py[0m:671 in code_to_exec                                   [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/Users/hyunchanan/Documents/GitHub/SG_proj_015/demo_ui/[0m[1mapp.py[0m:40 in <module>         [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m   [2m37 [0mst.markdown([33m'[0m[33m---[0m[33m'[0m)                                                              [31m [0m
+[31m [0m   [2m38 [0mrender_step1_vision(t)                                                          [31m [0m
+[31m [0m   [2m39 [0mrender_input_panel(t)                                                           [31m [0m
+[31m [0m [31m❱ [0m40 [1;4mrender_results_panel(t)[0m                                                         [31m [0m
+[31m [0m   [2m41 [0mrender_archive_panel(t)                                                         [31m [0m
+[31m [0m   [2m42 [0m                                                                                [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/Users/hyunchanan/Documents/GitHub/SG_proj_015/demo_ui/ui_components/[0m[1mresults_panel.p[0m [31m [0m
+[31m [0m [1my[0m:48 in render_results_panel                                                         [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m   [2m 45 [0m[2m│   [0mst.header(t[[33m"[0m[33mresult_title[0m[33m"[0m])                                               [31m [0m
+[31m [0m   [2m 46 [0m[2m│   [0m                                                                           [31m [0m
+[31m [0m   [2m 47 [0m[2m│   [0mresult = st.session_state[[33m"[0m[33mpipeline_result[0m[33m"[0m]                               [31m [0m
+[31m [0m [31m❱ [0m 48 [2m│   [0mstatus = [1;4mresult.get[0m([33m"[0m[33mstatus[0m[33m"[0m, [33m"[0m[33merror[0m[33m"[0m)                                     [31m [0m
+[31m [0m   [2m 49 [0m[2m│   [0m                                                                           [31m [0m
+[31m [0m   [2m 50 [0m[2m│   [0m[94mif[0m status == [33m"[0m[33mmatched[0m[33m"[0m:                                                    [31m [0m
+[31m [0m   [2m 51 [0m[2m│   │   [0mst.markdown([33mf[0m[33m"""[0m                                                       [31m [0m
+[31m────────────────────────────────────────────────────────────────────────────────────────[0m
+[1;91mAttributeError: [0m[32m'NoneType'[0m object has no attribute [32m'get'[0m

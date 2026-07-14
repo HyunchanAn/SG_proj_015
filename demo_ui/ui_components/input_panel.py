@@ -41,7 +41,13 @@ except ImportError:
     pass
 
 def render_input_panel(t):
-    from core.api_client import trigger_all_metrology_analyses_automatically
+    from core.api_client import trigger_all_metrology_analyses_automatically, load_adherend_master_from_db
+    
+    db_profiles = load_adherend_master_from_db()
+    adherend_list = list(dict.fromkeys([p.get("product_name", "Unknown") for p in db_profiles]))
+    if not adherend_list:
+        adherend_list = ["#4", "HL", "BA", "SM", "2B"]
+
     st.header(t["input_panel_title"])
 
     with st.form("pipeline_input_form"):

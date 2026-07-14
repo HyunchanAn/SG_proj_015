@@ -77,10 +77,10 @@ def get_cached_models_007():
         return None, None
     try:
         device_str = "mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu")
-        sam2_cfg = "sam2_hiera_s.yaml"
-        sam2_ckpt = "/Users/hyunchanan/Documents/GitHub/SG_proj_007/models/sam2/sam2_hiera_small.pt"
-        depth_encoder = "vits"
-        depth_ckpt = "/Users/hyunchanan/Documents/GitHub/SG_proj_007/models/depth_anything_v2/depth_anything_v2_vits.pth"
+        sam2_cfg = "sam2_hiera_l.yaml"
+        sam2_ckpt = "/Users/hyunchanan/Documents/GitHub/SG_proj_007/models/sam2/sam2_hiera_large.pt"
+        depth_encoder = "vitl"
+        depth_ckpt = "/Users/hyunchanan/Documents/GitHub/SG_proj_007/models/depth_anything_v2/depth_anything_v2_vitl.pth"
         
         sam_wrapper = SAM2BaseWrapper(model_cfg=sam2_cfg, checkpoint_path=sam2_ckpt, device=device_str)
         depth_wrapper = DepthAnythingV2Wrapper(encoder=depth_encoder, checkpoint_path=depth_ckpt, device=device_str)
@@ -264,15 +264,11 @@ def evaluate_material_id_010(input_ra: float, input_gloss: float, input_sfe: flo
         best_match_name = "SUS304-2B"
         best_finish = "2B"
         min_dist = float("inf")
-        sfe_vals = [p.get("surface_energy", 40.0) for p in db_profiles] + [input_sfe]
-        ra_vals = [p.get("roughness", 200.0) for p in db_profiles] + [input_ra]
-        gloss_vals = [p.get("gloss", 100.0) for p in db_profiles] + [input_gloss]
-        min_s, max_s = min(sfe_vals), max(sfe_vals)
-        min_r, max_r = min(ra_vals), max(ra_vals)
-        min_g, max_g = min(gloss_vals), max(gloss_vals)
+        min_s, max_s = 20.0, 60.0
+        min_r, max_r = 0.0, 500.0
+        min_g, max_g = 0.0, 600.0
         def norm_val(val, v_min, v_max):
-            denom = v_max - v_min
-            return (val - v_min) / denom if denom > 0 else 0.0
+            return np.clip((val - v_min) / (v_max - v_min), 0.0, 1.0)
         for profile in db_profiles:
             p_name = profile.get("product_name")
             p_sfe = profile.get("surface_energy", 40.0)
@@ -281,13 +277,14 @@ def evaluate_material_id_010(input_ra: float, input_gloss: float, input_sfe: flo
             d_s = norm_val(input_sfe, min_s, max_s) - norm_val(p_sfe, min_s, max_s)
             d_r = norm_val(input_ra, min_r, max_r) - norm_val(p_ra, min_r, max_r)
             d_g = norm_val(input_gloss, min_g, max_g) - norm_val(p_gloss, min_g, max_g)
-            dist = np.sqrt(d_s**2 + d_r**2 + d_g**2)
+            # 특성별 가중치 적용: 물리적 형상(Ra, Gloss) 45%, 화학적 상태(SFE) 10%
+            weights = {"sfe": 0.10, "ra": 0.45, "gloss": 0.45}
+            dist = np.sqrt(weights["sfe"]*(d_s**2) + weights["ra"]*(d_r**2) + weights["gloss"]*(d_g**2))
             if dist < min_dist:
                 min_dist = dist
                 best_match_name = p_name
                 best_finish = profile.get("classification", "2B")
-        max_theoretical_dist = np.sqrt(3.0)
-        sim = float(np.clip(100.0 * (1.0 - (min_dist / max_theoretical_dist)), 0.0, 100.0))
+        sim = float(np.clip(100.0 * np.exp(-min_dist), 0.0, 100.0))
         return best_match_name, best_finish, sim
 
     try:
@@ -317,8 +314,6 @@ def evaluate_material_id_010(input_ra: float, input_gloss: float, input_sfe: flo
 
 # Local fallback solver executing the exact 002 physics & vision pipeline directly in memory
 def calculate_local_sfe_droplet(w_data: bytes, g_data: bytes, volume_ul: float, selected_demo_preset: str = "2B") -> tuple[float, float, float]:
-    # Scale volume by 100x to compensate 200uL input value against small droplet micro-scale physics
-    volume_ul = volume_ul / 100.0
     analyzer, corrector = get_cached_analyzer_002()
     if analyzer is None or corrector is None:
         return 62.8, 48.2, 38.6 # Safety default
@@ -337,7 +332,9 @@ def calculate_local_sfe_droplet(w_data: bytes, g_data: bytes, volume_ul: float, 
             H, warped_size, coin_info, _ = corrector.find_homography(img_rgb, coin_mask_bin)
             warped = corrector.warp_image(img_rgb, H, warped_size)
             
-            drop_box = analyzer.auto_detect_droplet_candidate(warped)
+            cx, cy, cr = coin_info
+            coin_box_for_exclude = [cx - cr, cy - cr, cx + cr, cy + cr]
+            drop_box = analyzer.auto_detect_droplet_candidate(warped, exclude_box=coin_box_for_exclude, coin_radius=cr)
             analyzer.set_image(warped)
             drop_mask, _ = analyzer.predict_mask(box=drop_box)
             
