@@ -124,7 +124,7 @@ def render_step1_vision(t):
             st.session_state["glycerol_angle_res"] = glycerol_angle
             st.session_state["droplet_analysis_done"] = True
 
-            url_010 = "http://localhost:8010/detect"
+            url_010 = "http://127.0.0.1:8010/detect"
             payload_010 = {
                 "roughness": st.session_state["extracted_roughness"],
                 "gloss": st.session_state["extracted_gloss"],
@@ -240,7 +240,7 @@ def render_step1_vision(t):
 
 
 
-            url_010 = "http://localhost:8010/detect"
+            url_010 = "http://127.0.0.1:8010/detect"
             payload_010 = {
                 "roughness": st.session_state["extracted_roughness"],
                 "gloss": st.session_state["extracted_gloss"],

@@ -417,7 +417,7 @@ def trigger_all_metrology_analyses_automatically(preset_name: str):
         st.session_state["terra_analysis_done"] = True
 
     # 4. 010 Material ID API call with real-time metrology inputs
-    url_010 = "http://localhost:8010/detect"
+    url_010 = "http://127.0.0.1:8010/detect"
     payload_010 = {
         "roughness": st.session_state["extracted_roughness"],
         "gloss": st.session_state["extracted_gloss"],

@@ -770,3 +770,423 @@ For `use_container_width=True`, use `width='stretch'`. For `use_container_width=
 [31m [0m [2ms/[0m[1mprogress.py[0m:72 in _get_value                                                       [31m [0m
 [31m────────────────────────────────────────────────────────────────────────────────────────[0m
 [1;91mStreamlitAPIException: [0mProgress Value has invalid value [1m[[0m[1;36m0.0[0m, [1;36m1.0[0m[1m][0m: [1;36m32.344748942057294[0m
+2026-07-14 17:55:57.885 | INFO     | core.api_client:start_local_orchestrator:49 - Local orchestrator is already running.
+2026-07-14 17:55:57.997 | INFO     | core.api_client:start_local_orchestrator:49 - Local orchestrator is already running.
+2026-07-14 17:55:58.245 | INFO     | core.api_client:trigger_all_metrology_analyses_automatically:295 - Triggering auto-metrology analyses for preset: HL
+2026-07-14 17:56:26.614 | DEBUG    | deepdrop_sfe.physics_engine:calculate_contact_angle:131 - Solving contact angle: droplet V: 200.0 uL, contact radius r: 5.4400 mm
+2026-07-14 17:56:26.620 | INFO     | deepdrop_sfe.physics_engine:calculate_contact_angle:184 - Numerical solver converged. Solved Theta: 68.7548 degrees
+2026-07-14 17:56:29.387 | DEBUG    | deepdrop_sfe.physics_engine:calculate_contact_angle:131 - Solving contact angle: droplet V: 200.0 uL, contact radius r: 4.6174 mm
+2026-07-14 17:56:29.387 | INFO     | deepdrop_sfe.physics_engine:calculate_contact_angle:184 - Numerical solver converged. Solved Theta: 88.8310 degrees
+2026-07-14 17:56:29.400 | INFO     | deepdrop_sfe.physics_engine:calculate_owrk:239 - OWRK regression computed successfully. Total SFE: 72.3786 mN/m (Dispersive: 0.0000, Polar: 72.3786)
+2026-07-14 17:56:29.518 | INFO     | vsams.analysis.surface_evaluator:analyze:45 - V-SAMS: Starting surface analysis.
+2026-07-14 17:56:29.541 | INFO     | vsams.analysis.surface_evaluator:_auto_detect_boxes:242 - V-SAMS: Coin automatically located. Coin box: [1021, 616, 2169, 1764], Ref box: [1021, 1820, 2169, 2968]
+2026-07-14 17:56:29.565 | INFO     | vsams.analysis.surface_evaluator:_estimate_roughness_and_gloss:320 - V-SAMS: Estimated physical attributes - Roughness Ra: 0.1956 um, Gloss: 265.6 GU (SharpRatio: 1.0122)
+2026-07-14 17:56:42.506 | INFO     | sg_terra.seg.sam2_wrapper:segment_target:96 - SAM 2 segmentation complete. Mask shape: (750, 1000), Confidence Score: 0.9326, Latency: 68.10 ms
+2026-07-14 17:56:43.399 | INFO     | sg_terra.topo.depth_wrapper:estimate_depth:100 - Depth estimation complete. Depth map shape: (750, 1000), Latency: 854.56 ms
+2026-07-14 17:56:43.550 | INFO     | sg_terra.curv.curvature:calculate_gaussian_curvature:49 - Gaussian curvature computation complete. Shape: (750, 1000)
+2026-07-14 17:56:43.555 | DEBUG    | sg_terra.curv.curvature:find_critical_points:91 - Locating top-1 critical stress points in curvature map.
+2026-07-14 17:56:43.579 | INFO     | sg_terra.curv.curvature:find_critical_points:105 - Top critical point identified. Max curvature value: 0.018821 at coordinate (np.int64(298), np.int64(666))
+2026-07-14 17:57:03.734 | INFO     | core.api_client:start_local_orchestrator:49 - Local orchestrator is already running.
+2026-07-14 17:57:03.758 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:57:03.843 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:57:03.926 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:57:03.997 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:57:04.074 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:57:04.142 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:57:04.218 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:57:04.221 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:57:04.240 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:57:04.260 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+[31m──[0m[31m────────────────────────[0m[31m [0m[1;31mTraceback [0m[1;2;31m(most recent call last)[0m[31m [0m[31m─────────────────────────[0m[31m──[0m
+[31m [0m [2m/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/streamlit/runtime[0m [31m [0m
+[31m [0m [2m/scriptrunner/[0m[1mexec_code.py[0m:129 in exec_func_with_error_handling                      [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/streamlit/runtime[0m [31m [0m
+[31m [0m [2m/scriptrunner/[0m[1mscript_runner.py[0m:671 in code_to_exec                                   [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/Users/hyunchanan/Documents/GitHub/SG_proj_015/demo_ui/[0m[1mapp.py[0m:40 in <module>         [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m   [2m37 [0mst.markdown([33m'[0m[33m---[0m[33m'[0m)                                                              [31m [0m
+[31m [0m   [2m38 [0mrender_step1_vision(t)                                                          [31m [0m
+[31m [0m   [2m39 [0mrender_input_panel(t)                                                           [31m [0m
+[31m [0m [31m❱ [0m40 [1;4mrender_results_panel(t)[0m                                                         [31m [0m
+[31m [0m   [2m41 [0mrender_archive_panel(t)                                                         [31m [0m
+[31m [0m   [2m42 [0m                                                                                [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/Users/hyunchanan/Documents/GitHub/SG_proj_015/demo_ui/ui_components/[0m[1mresults_panel.p[0m [31m [0m
+[31m [0m [1my[0m:196 in render_results_panel                                                        [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m   [2m193 [0m[2m│   │   │   │   [0mfig = go.Figure(data=[go.Pie(                                  [31m [0m
+[31m [0m   [2m194 [0m[2m│   │   │   │   │   [0mlabels=labels,                                             [31m [0m
+[31m [0m   [2m195 [0m[2m│   │   │   │   │   [0mvalues=values,                                             [31m [0m
+[31m [0m [31m❱ [0m196 [2m│   │   │   │   │   [0mcircle=[94m.4[0m,                                                 [31m [0m
+[31m [0m   [2m197 [0m[2m│   │   │   │   │   [0m[1;4mmarker=[0m[1;4;96mdict[0m[1;4m(colors=[[0m[1;4;33m"[0m[1;4;33m#1f4068[0m[1;4;33m"[0m[1;4m, [0m[1;4;33m"[0m[1;4;33m#162447[0m[1;4;33m"[0m[1;4m, [0m[1;4;33m"[0m[1;4;33m#e43f5a[0m[1;4;33m"[0m[1;4m, [0m[1;4;33m"[0m[1;4;33m#3b8[0m [31m [0m
+[31m [0m   [2m198 [0m[2m│   │   │   │   [0m[1;4m)])[0m                                                            [31m [0m
+[31m [0m   [2m199 [0m[2m│   │   │   │   [0m[1;4mfig.update_layout([0m                                             [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/plotly/graph_objs[0m [31m [0m
+[31m [0m [2m/[0m[1m_pie.py[0m:2031 in __init__                                                            [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m   [2m2028 [0m[2m│   │   [0m                                                                      [31m [0m
+[31m [0m   [2m2029 [0m[2m│   │   [0m[96mself[0m._props[[33m"[0m[33mtype[0m[33m"[0m] = [33m"[0m[33mpie[0m[33m"[0m                                           [31m [0m
+[31m [0m   [2m2030 [0m[2m│   │   [0marg.pop([33m"[0m[33mtype[0m[33m"[0m, [94mNone[0m)                                                 [31m [0m
+[31m [0m [31m❱ [0m2031 [2m│   │   [0m[1;4;96mself[0m[1;4m._process_kwargs(**[0m[1;4;96mdict[0m[1;4m(arg, **kwargs))[0m                           [31m [0m
+[31m [0m   [2m2032 [0m[2m│   │   [0m[96mself[0m._skip_invalid = [94mFalse[0m                                            [31m [0m
+[31m [0m   [2m2033 [0m                                                                              [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/plotly/[0m[1mbasedataty[0m [31m [0m
+[31m [0m [1mpes.py[0m:4451 in _process_kwargs                                                       [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m   [2m4448 [0m[2m│   │   │   │   [0m[2m# Set extra property as-is[0m                                    [31m [0m
+[31m [0m   [2m4449 [0m[2m│   │   │   │   [0m[96mself[0m[k] = v                                                   [31m [0m
+[31m [0m   [2m4450 [0m[2m│   │   │   [0m[94melif[0m [95mnot[0m [96mself[0m._skip_invalid:                                      [31m [0m
+[31m [0m [31m❱ [0m4451 [2m│   │   │   │   [0m[1;4;94mraise[0m[1;4m err[0m                                                     [31m [0m
+[31m [0m   [2m4452 [0m[2m│   │   [0m[2m# No need to call _raise_on_invalid_property_error here,[0m              [31m [0m
+[31m [0m   [2m4453 [0m[2m│   │   [0m[2m# because we have it set up so that the singular case of calling[0m      [31m [0m
+[31m [0m   [2m4454 [0m[2m│   │   [0m[2m# __setitem__ will raise this. If _check_path_in_prop_tree[0m            [31m [0m
+[31m────────────────────────────────────────────────────────────────────────────────────────[0m
+[1;91mValueError: [0mInvalid property specified for object of type plotly.graph_objs.Pie: 
+[32m'circle'[0m
+
+Did you mean [32m"title"[0m?
+
+    Valid properties:
+        automargin
+            Determines whether outside text labels can push the
+            margins.
+        customdata
+            Assigns extra data each datum. This may be useful when
+            listening to hover, click and selection events. Note
+            that, [32m"scatter"[0m traces also appends customdata items in
+            the markers DOM elements
+        customdatasrc
+            Sets the source reference on Chart Studio Cloud for
+            `customdata`.
+        direction
+            Specifies the direction at which succeeding sectors
+            follow one another.
+        dlabel
+            Sets the label step. See `label0` for more info.
+        domain
+            :class:`plotly.graph_objects.pie.Domain` instance or
+            dict with compatible properties
+        hole
+            Sets the fraction of the radius to cut out of the pie.
+            Use this to make a donut chart.
+        hoverinfo
+            Determines which trace information appear on hover. If
+            `none` or `skip` are set, no information is displayed
+            upon hovering. But, if `none` is set, click and hover
+            events are still fired.
+        hoverinfosrc
+            Sets the source reference on Chart Studio Cloud for
+            `hoverinfo`.
+        hoverlabel
+            :class:`plotly.graph_objects.pie.Hoverlabel` instance
+            or dict with compatible properties
+        hovertemplate
+            Template string used for rendering the information that
+            appear on hover box. Note that this will override
+            `hoverinfo`. Variables are inserted using %[1m{[0mvariable[1m}[0m,
+            for example [32m"y: %[0m[32m{[0m[32my[0m[32m}[0m[32m"[0m as well as %[1m{[0mxother[1m}[0m, [1m{[0m%_xother[1m}[0m,
+            [1m{[0m%_xother_[1m}[0m, [1m{[0m%xother_[1m}[0m. When showing info for several
+            points, [32m"xother"[0m will be added to those with different
+            x positions from the first point. An underscore before
+            or after [32m"[0m[32m([0m[32mx|y[0m[32m)[0m[32mother"[0m will add a space on that side,
+            only when this field is shown. Numbers are formatted
+            using d3-format's syntax %[1m{[0mvariabl[1;92me:d3[0m-format[1m}[0m, for
+            example [32m"Price: %[0m[32m{[0m[32my:$.2f[0m[32m}[0m[32m"[0m.
+            [4;94mhttps://github.com/d3/d3-format/tree/v1.4.5#d3-format[0m
+            for details on the formatting syntax. Dates are
+            formatted using d3-time-format's syntax
+            %[1m{[0mvariable|d3-time-format[1m}[0m, for example "Day:
+            %[1m{[0m[1;36m2019[0m-[1;36m01[0m-[1;36m01[0m|%A[1m}[0m". [4;94mhttps://github.com/d3/d3-time-[0m
+            format/tree/v2.[1;36m2.3[0m#locale_format for details on the
+            date formatting syntax. Variables that can't be found
+            will be replaced with the specifier. For example, a
+            template of [32m"data: %[0m[32m{[0m[32mx[0m[32m}[0m[32m, %[0m[32m{[0m[32my[0m[32m}[0m[32m"[0m will result in a value
+            of [32m"data: 1, %[0m[32m{[0m[32my[0m[32m}[0m[32m"[0m if x is [1;36m1[0m and y is missing.
+            Variables with an undefined value will be replaced with
+            the fallback value. The variables available in
+            `hovertemplate` are the ones emitted as event data
+            described at this link
+            [4;94mhttps://plotly.com/javascript/plotlyjs-events/#event-[0m
+            data. Additionally, all attributes that can be
+            specified per-point [1m([0mthe ones that are `arrayOk: true`[1m)[0m
+            are available. Finally, the template string has access
+            to variables `label`, `color`, `value`, `percent` and
+            `text`. Anything contained in tag `[1m<[0m[1;95mextra[0m[39m>` is[0m
+[39m            displayed in the secondary box, for example[0m
+[39m            `<extra>%[0m[1;39m{[0m[39mfullData.name[0m[1;39m}[0m[39m<[0m[35m/[0m[95mextra[0m[39m>`. To hide the[0m
+[39m            secondary box completely, use an empty tag[0m
+[39m            `<extra><[0m[35m/[0m[95mextra[0m[1m>[0m`.
+        hovertemplatefallback
+            Fallback string that's displayed when a variable
+            referenced in a template is missing. If the boolean
+            value [32m'false'[0m is passed in, the specifier with the
+            missing variable will be displayed.
+        hovertemplatesrc
+            Sets the source reference on Chart Studio Cloud for
+            `hovertemplate`.
+        hovertext
+            Sets hover text elements associated with each sector.
+            If a single string, the same string appears for all
+            data points. If an array of string, the items are
+            mapped in order of this trace's sectors. To be seen,
+            trace `hoverinfo` must contain a [32m"text"[0m flag.
+        hovertextsrc
+            Sets the source reference on Chart Studio Cloud for
+            `hovertext`.
+        ids
+            Assigns id labels to each datum. These ids for object
+            constancy of data points during animation. Should be an
+            array of strings, not numbers or any other type.
+        idssrc
+            Sets the source reference on Chart Studio Cloud for
+            `ids`.
+        insidetextfont
+            Sets the font used for `textinfo` lying inside the
+            sector.
+        insidetextorientation
+            Controls the orientation of the text inside chart
+            sectors. When set to [32m"auto"[0m, text may be oriented in
+            any direction in order to be as big as possible in the
+            middle of a sector. The [32m"horizontal"[0m option orients
+            text to be parallel with the bottom of the chart, and
+            may make text smaller in order to achieve that goal.
+            The [32m"radial"[0m option orients text along the radius of
+            the sector. The [32m"tangential"[0m option orients text
+            perpendicular to the radius of the sector.
+        label0
+            Alternate to `labels`. Builds a numeric set of labels.
+            Use with `dlabel` where `label0` is the starting label
+            and `dlabel` the step.
+        labels
+            Sets the sector labels. If `labels` entries are
+            duplicated, we sum associated `values` or simply count
+            occurrences if `values` is not provided. For other
+            array attributes [1m([0mincluding color[1m)[0m we use the first
+            non-empty entry among all occurrences of the label.
+        labelssrc
+            Sets the source reference on Chart Studio Cloud for
+            `labels`.
+        legend
+            Sets the reference to a legend to show the pie slices
+            in. Can be an array if `values` is set. In that case,
+            each entry specifies the legend reference for one
+            slice. References to these legends are [32m"legend"[0m,
+            [32m"legend2"[0m, [32m"legend3"[0m, etc. Settings for these legends
+            are set in the layout, under `layout.legend`,
+            `layout.legend2`, etc.
+        legendgroup
+            Sets the legend group for this trace. Traces and shapes
+            part of the same legend group hide/show at the same
+            time when toggling legend items.
+        legendgrouptitle
+            :class:`plotly.graph_objects.pie.Legendgrouptitle`
+            instance or dict with compatible properties
+        legendrank
+            Sets the legend rank for this trace. Items and groups
+            with smaller ranks are presented on top/left side while
+            with [32m"reversed"[0m `legend.traceorder` they are on
+            bottom/right side. The default legendrank is [1;36m1000[0m, so
+            that you can use ranks less than [1;36m1000[0m to place certain
+            items before all unranked items, and ranks greater than
+            [1;36m1000[0m to go after all unranked items. When having
+            unranked or equal rank items shapes would be displayed
+            after traces i.e. according to their order in data and
+            layout.
+        legendsrc
+            Sets the source reference on Chart Studio Cloud for
+            `legend`.
+        legendwidth
+            Sets the width [1m([0min px or fraction[1m)[0m of the legend for
+            this trace.
+        marker
+            :class:`plotly.graph_objects.pie.Marker` instance or
+            dict with compatible properties
+        meta
+            Assigns extra meta information associated with this
+            trace that can be used in various text attributes.
+            Attributes such as trace `name`, graph, axis and
+            colorbar `title.text`, annotation `text`
+            `rangeselector`, `updatemenues` and `sliders` `label`
+            text all support `meta`. To access the trace `meta`
+            values in an attribute in the same trace, simply use
+            `%[1m{[0mmeta[1m[[0mi[1m][0m[1m}[0m` where `i` is the index or key of the
+            `meta` item in question. To access trace `meta` in
+            layout attributes, use `%[1m{[0mdata[1m[[0mn[1m[[0m.meta[1m[[0mi[1m][0m[1m}[0m` where `i`
+            is the index or key of the `meta` and `n` is the trace
+            index.
+        metasrc
+            Sets the source reference on Chart Studio Cloud for
+            `meta`.
+        name
+            Sets the trace name. The trace name appears as the
+            legend item and on hover.
+        opacity
+            Sets the opacity of the trace.
+        outsidetextfont
+            Sets the font used for `textinfo` lying outside the
+            sector.
+        pull
+            Sets the fraction of larger radius to pull the sectors
+            out from the center. This can be a constant to pull all
+            slices apart from each other equally or an array to
+            highlight one or more slices.
+        pullsrc
+            Sets the source reference on Chart Studio Cloud for
+            `pull`.
+        rotation
+            Instead of the first slice starting at [1;36m12[0m o'clock,
+            rotate to some other angle.
+        scalegroup
+            If there are multiple pie charts that should be sized
+            according to their totals, link them by providing a
+            non-empty group id here shared by every trace in the
+            same group.
+        showlegend
+            Determines whether or not items corresponding to the
+            pie slices are shown in the legend. Can be an array if
+            `values` is set. In that case, each entry specifies
+            appearance in the legend for one slice.
+        showlegendsrc
+            Sets the source reference on Chart Studio Cloud for
+            `showlegend`.
+        sort
+            Determines whether or not the sectors are reordered
+            from largest to smallest.
+        stream
+            :class:`plotly.graph_objects.pie.Stream` instance or
+            dict with compatible properties
+        text
+            Sets text elements associated with each sector. If
+            trace `textinfo` contains a [32m"text"[0m flag, these elements
+            will be seen on the chart. If trace `hoverinfo`
+            contains a [32m"text"[0m flag and [32m"hovertext"[0m is not set,
+            these elements will be seen in the hover labels.
+        textfont
+            Sets the font used for `textinfo`.
+        textinfo
+            Determines which trace information appear on the graph.
+        textposition
+            Specifies the location of the `textinfo`.
+        textpositionsrc
+            Sets the source reference on Chart Studio Cloud for
+            `textposition`.
+        textsrc
+            Sets the source reference on Chart Studio Cloud for
+            `text`.
+        texttemplate
+            Template string used for rendering the information text
+            that appears on points. Note that this will override
+            `textinfo`. Variables are inserted using %[1m{[0mvariable[1m}[0m,
+            for example [32m"y: %[0m[32m{[0m[32my[0m[32m}[0m[32m"[0m. Numbers are formatted using
+            d3-format's syntax %[1m{[0mvariabl[1;92me:d3[0m-format[1m}[0m, for example
+            [32m"Price: %[0m[32m{[0m[32my:$.2f[0m[32m}[0m[32m"[0m.
+            [4;94mhttps://github.com/d3/d3-format/tree/v1.4.5#d3-format[0m
+            for details on the formatting syntax. Dates are
+            formatted using d3-time-format's syntax
+            %[1m{[0mvariable|d3-time-format[1m}[0m, for example "Day:
+            %[1m{[0m[1;36m2019[0m-[1;36m01[0m-[1;36m01[0m|%A[1m}[0m". [4;94mhttps://github.com/d3/d3-time-[0m
+            format/tree/v2.[1;36m2.3[0m#locale_format for details on the
+            date formatting syntax. Variables that can't be found
+            will be replaced with the specifier. For example, a
+            template of [32m"data: %[0m[32m{[0m[32mx[0m[32m}[0m[32m, %[0m[32m{[0m[32my[0m[32m}[0m[32m"[0m will result in a value
+            of [32m"data: 1, %[0m[32m{[0m[32my[0m[32m}[0m[32m"[0m if x is [1;36m1[0m and y is missing.
+            Variables with an undefined value will be replaced with
+            the fallback value. All attributes that can be
+            specified per-point [1m([0mthe ones that are `arrayOk: true`[1m)[0m
+            are available. Finally, the template string has access
+            to variables `label`, `color`, `value`, `percent` and
+            `text`.
+        texttemplatefallback
+            Fallback string that's displayed when a variable
+            referenced in a template is missing. If the boolean
+            value [32m'false'[0m is passed in, the specifier with the
+            missing variable will be displayed.
+        texttemplatesrc
+            Sets the source reference on Chart Studio Cloud for
+            `texttemplate`.
+        title
+            :class:`plotly.graph_objects.pie.Title` instance or
+            dict with compatible properties
+        uid
+            Assign an id to this trace, Use this to provide object
+            constancy between traces during animations and
+            transitions.
+        uirevision
+            Controls persistence of some user-driven changes to the
+            trace: `constraintrange` in `parcoords` traces, as well
+            as some `editable: true` modifications such as `name`
+            and `colorbar.title`. Defaults to `layout.uirevision`.
+            Note that other user-driven trace attribute changes are
+            controlled by `layout` attributes: `trace.visible` is
+            controlled by `layout.legend.uirevision`,
+            `selectedpoints` is controlled by
+            `layout.selectionrevision`, and `[1;35mcolorbar.[0m[1m([0mx|y[1m)[0m`
+            [1m([0maccessible with `config: [1m{[0meditable: true[1m}[0m`[1m)[0m is
+            controlled by `layout.editrevision`. Trace changes are
+            tracked by `uid`, which only falls back on trace index
+            if no `uid` is provided. So if your app can add/remove
+            traces before the end of the `data` array, such that
+            the same trace has a different index, you can still
+            preserve user-driven changes if you give each trace a
+            `uid` that stays with it as it moves.
+        values
+            Sets the values of the sectors. If omitted, we count
+            occurrences of each label.
+        valuessrc
+            Sets the source reference on Chart Studio Cloud for
+            `values`.
+        visible
+            Determines whether or not this trace is visible. If
+            [32m"legendonly"[0m, the trace is not drawn, but can appear as
+            a legend item [1m([0mprovided that the legend itself is
+            visible[1m)[0m.
+        
+Did you mean [32m"title"[0m?
+
+Bad property path:
+circle
+^^^^^^
