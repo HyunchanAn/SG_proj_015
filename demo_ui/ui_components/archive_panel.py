@@ -48,6 +48,10 @@ def render_archive_panel(t):
     st.write(t["archive_desc"])
 
     if st.button(t["archive_btn"], use_container_width=True):
+        result = st.session_state.get("pipeline_result", {})
+        status = result.get("status", "error")
+        rev_data = result.get("reverse_engineering", {})
+        
         archive_dir = Path("/Users/hyunchanan/Documents/GitHub/SG_proj_015/reports_archive/demo_reports")
         archive_dir.mkdir(parents=True, exist_ok=True)
 
