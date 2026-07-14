@@ -128,22 +128,34 @@ st.markdown(f'<div class="sub-title">{t["subtitle"]}</div>', unsafe_allow_html=T
 # ---------------------------------------------------------
 if "auto_e2e_completed" not in st.session_state:
     st.session_state["auto_e2e_completed"] = True
-    st.info("🚀 [전자동화 모드] 사용자의 개입 없이 HL, 2B, BA 3종 피착재에 대한 E2E 통합 파이프라인 분석을 백그라운드에서 비동기 병렬로 동시 실행합니다...")
     
-    progress_ui = st.empty()
-    with st.spinner("비동기 병렬 처리 중... (서버 부하에 따라 몇 초 소요될 수 있습니다)"):
-        substrates = ["HL", "2B", "BA"]
-        completed = 0
-        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
-            futures = {executor.submit(auto_run_e2e_background, s): s for s in substrates}
-            for future in concurrent.futures.as_completed(futures):
-                s = futures[future]
-                completed += 1
-                try:
-                    res_file = future.result()
-                    st.toast(f"✅ {s} 분석 및 아카이빙 완료! ({res_file})")
-                except Exception as e:
-                    st.toast(f"❌ {s} 분석 실패: {e}")
+    # Create an empty container that we can clear later
+    loading_container = st.empty()
+    
+    with loading_container.container():
+        st.info("🚀 [전자동화 모드] 사용자의 개입 없이 HL, 2B, BA 3종 피착재에 대한 E2E 통합 파이프라인 분석을 백그라운드에서 비동기 병렬로 동시 실행합니다...")
+        
+        # Centered GIF
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            st.image("/Users/hyunchanan/Documents/GitHub/SG_proj_015/Surfy_gif_001.gif", use_container_width=True)
+
+        with st.spinner("비동기 병렬 처리 중... (서버 부하에 따라 몇 초 소요될 수 있습니다)"):
+            substrates = ["HL", "2B", "BA"]
+            completed = 0
+            with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+                futures = {executor.submit(auto_run_e2e_background, s): s for s in substrates}
+                for future in concurrent.futures.as_completed(futures):
+                    s = futures[future]
+                    completed += 1
+                    try:
+                        res_file = future.result()
+                        st.toast(f"✅ {s} 분석 및 아카이빙 완료! ({res_file})")
+                    except Exception as e:
+                        st.toast(f"❌ {s} 분석 실패: {e}")
+    
+    # Clear the loading messages and GIF after completion
+    loading_container.empty()
                 
     st.success("🎉 모든 3종 피착재에 대한 AI 예측, 매칭, 역설계 및 최종 보고서 아카이빙이 완벽하게 자동 처리되었습니다! (손 안 대셔도 됩니다)")
     st.markdown("---")
