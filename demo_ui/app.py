@@ -14,8 +14,6 @@ import numpy as np
 import sys
 import subprocess
 
-@st.cache_resource
-
 from core.api_client import start_local_orchestrator
 from core.state_manager import init_state
 from ui_components.network_status import render_health_check
