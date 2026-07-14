@@ -6,8 +6,8 @@ import cv2
 import torch
 
 # 통합 모듈 경로 세팅
-sys.path.append("E:/Github/SG_integration_002+003+007")
-os.chdir("E:/Github/SG_integration_002+003+007")
+sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_integration_002+003+007")
+os.chdir("/Users/hyunchanan/Documents/GitHub/SG_integration_002+003+007")
 torch.set_num_threads(1)
 
 from deepdrop_sfe import AIContactAngleAnalyzer, DropletPhysics, PerspectiveCorrector
@@ -15,8 +15,8 @@ from vsams.analysis.surface_evaluator import SurfaceEvaluator
 from src.seg.sam2_wrapper import SAM2BaseWrapper
 from src.topo.depth_wrapper import DepthAnythingV2Wrapper
 
-ORGANIZED_DIR = "E:/Github/SG_proj_015/SG_sample_images/organized"
-OUTPUT_DIR = "E:/Github/SG_proj_015/SG_sample_images"
+ORGANIZED_DIR = "/Users/hyunchanan/Documents/GitHub/SG_proj_015/SG_sample_images/organized"
+OUTPUT_DIR = "/Users/hyunchanan/Documents/GitHub/SG_proj_015/SG_sample_images"
 
 def draw_mask_overlay(image_rgb, mask, color=(0, 255, 0), alpha=0.4):
     """
@@ -39,7 +39,7 @@ def main():
     print("Starting visual mask verification generation...")
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = "mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu")
     
     # 모델 일괄 로드
     sfe_analyzer = AIContactAngleAnalyzer(device=device)

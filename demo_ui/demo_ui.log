@@ -1,0 +1,73 @@
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8503
+  Network URL: http://192.168.0.13:8503
+
+  For better performance, install the Watchdog module:
+
+  $ xcode-select --install
+  $ pip install watchdog
+            
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.5.0) or chardet (7.4.3)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+2026-07-14 11:32:17.256 | INFO     | __main__:trigger_all_metrology_analyses_automatically:413 - Triggering auto-metrology analyses for preset: HL
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-07-14 11:32:27.820 | DEBUG    | deepdrop_sfe.physics_engine:calculate_contact_angle:131 - Solving contact angle: droplet V: 2.0 uL, contact radius r: 12.0379 mm
+2026-07-14 11:32:27.822 | INFO     | deepdrop_sfe.physics_engine:calculate_contact_angle:184 - Numerical solver converged. Solved Theta: 0.0836 degrees
+2026-07-14 11:32:30.532 | DEBUG    | deepdrop_sfe.physics_engine:calculate_contact_angle:131 - Solving contact angle: droplet V: 2.0 uL, contact radius r: 12.0396 mm
+2026-07-14 11:32:30.533 | INFO     | deepdrop_sfe.physics_engine:calculate_contact_angle:184 - Numerical solver converged. Solved Theta: 0.0836 degrees
+2026-07-14 11:32:30.535 | INFO     | deepdrop_sfe.physics_engine:calculate_owrk:234 - OWRK regression computed successfully. Total SFE: 74.3442 mN/m (Dispersive: 13.1692, Polar: 61.1750)
+2026-07-14 11:32:30.658 | INFO     | vsams.analysis.surface_evaluator:analyze:45 - V-SAMS: Starting surface analysis.
+2026-07-14 11:32:30.676 | INFO     | vsams.analysis.surface_evaluator:_auto_detect_boxes:242 - V-SAMS: Coin automatically located. Coin box: [1021, 616, 2169, 1764], Ref box: [1021, 1820, 2169, 2968]
+2026-07-14 11:32:30.695 | INFO     | vsams.analysis.surface_evaluator:_estimate_roughness_and_gloss:311 - V-SAMS: Estimated physical attributes - Roughness Ra: 0.0928 um, Gloss: 28.4 GU (SharpRatio: 1.0122)
+2026-07-14 11:32:30.746 | INFO     | sg_terra.seg.sam2_wrapper:__init__:32 - Initializing SAM 2 Wrapper on device: mps
+2026-07-14 11:32:30.746 | INFO     | sg_terra.topo.depth_wrapper:__init__:32 - Initializing Depth-Anything-V2 Wrapper on device: mps
+2026-07-14 11:32:30.746 | INFO     | sg_terra.seg.sam2_wrapper:load_model:56 - Loading SAM 2 checkpoints from /Users/hyunchanan/Documents/GitHub/SG_proj_007/models/sam2/sam2_hiera_small.pt...
+2026-07-14 11:32:31.045 | ERROR    | utils:get_cached_models_007:92 - Failed to initialize 007 AI models: [Errno 2] No such file or directory: '/Users/hyunchanan/Documents/GitHub/SG_proj_007/models/sam2/sam2_hiera_small.pt'
+2026-07-14 11:32:35.627 | ERROR    | __main__:trigger_all_metrology_analyses_automatically:601 - Auto E2E pipeline trigger failed: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+2026-07-14 11:32:35.767 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 11:32:35.838 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 11:32:35.900 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 11:32:35.966 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 11:32:36.035 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 11:32:36.098 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 11:32:36.152 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 11:32:36.154 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 11:32:36.158 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.

@@ -9,10 +9,10 @@ from loguru import logger
 from PIL import Image
 
 # Add SG_proj_002, SG_proj_003, SG_proj_007, and SG_proj_010 to sys.path to directly access modules
-sys.path.append("e:/Github/SG_proj_002")
-sys.path.append("e:/Github/SG_proj_003")
-sys.path.append("e:/Github/SG_proj_007")
-sys.path.append("e:/Github/SG_proj_010")
+sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_002")
+sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_003")
+sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_007")
+sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_010")
 
 try:
     from deepdrop_sfe import AIContactAngleAnalyzer, PerspectiveCorrector, DropletPhysics
@@ -49,7 +49,7 @@ def get_cached_analyzer_002():
     if not HAS_002_MODULE:
         return None, None
     try:
-        device_str = "cuda" if torch.cuda.is_available() else "cpu"
+        device_str = "mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu")
         analyzer = AIContactAngleAnalyzer(model_id="facebook/sam2.1-hiera-tiny", device=device_str)
         corrector = PerspectiveCorrector()
         return analyzer, corrector
@@ -63,7 +63,7 @@ def get_cached_evaluator_003():
     if not HAS_003_MODULE:
         return None
     try:
-        device_str = "cuda" if torch.cuda.is_available() else "cpu"
+        device_str = "mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu")
         evaluator = SurfaceEvaluator(device=torch.device(device_str))
         return evaluator
     except Exception as e:
@@ -76,11 +76,11 @@ def get_cached_models_007():
     if not HAS_007_MODULE:
         return None, None
     try:
-        device_str = "cuda" if torch.cuda.is_available() else "cpu"
+        device_str = "mps" if torch.backends.mps.is_available() else ("cuda" if torch.cuda.is_available() else "cpu")
         sam2_cfg = "sam2_hiera_s.yaml"
-        sam2_ckpt = "E:/Github/SG_proj_007/models/sam2/sam2_hiera_small.pt"
+        sam2_ckpt = "/Users/hyunchanan/Documents/GitHub/SG_proj_007/models/sam2/sam2_hiera_small.pt"
         depth_encoder = "vits"
-        depth_ckpt = "E:/Github/SG_proj_007/models/depth_anything_v2/depth_anything_v2_vits.pth"
+        depth_ckpt = "/Users/hyunchanan/Documents/GitHub/SG_proj_007/models/depth_anything_v2/depth_anything_v2_vits.pth"
         
         sam_wrapper = SAM2BaseWrapper(model_cfg=sam2_cfg, checkpoint_path=sam2_ckpt, device=device_str)
         depth_wrapper = DepthAnythingV2Wrapper(encoder=depth_encoder, checkpoint_path=depth_ckpt, device=device_str)
@@ -176,7 +176,7 @@ def generate_vsams_visual(img_bytes: bytes) -> bytes:
 
 # Actual monomer recipe querying 004 SQLite database and seeded recipes
 def get_actual_product_recipe(product_name: str) -> dict[str, float]:
-    db_path = "E:/Github/SG_proj_004/sg_proj_004.db"
+    db_path = "/Users/hyunchanan/Documents/GitHub/SG_proj_004/sg_proj_004.db"
     if not os.path.exists(db_path):
         recipes = {
             "SGV218ME": {"2-EHA": 65.0, "BA": 25.0, "MMA": 7.0, "AA": 3.0},
@@ -226,7 +226,7 @@ def get_actual_product_recipe(product_name: str) -> dict[str, float]:
 
 # Load master adherends directly from 004 SQLite database to eliminate all Excel actions
 def load_adherend_master_from_db() -> list[dict]:
-    db_path = "E:/Github/SG_proj_004/sg_proj_004.db"
+    db_path = "/Users/hyunchanan/Documents/GitHub/SG_proj_004/sg_proj_004.db"
     if not os.path.exists(db_path):
         return []
     try:
@@ -291,11 +291,11 @@ def evaluate_material_id_010(input_ra: float, input_gloss: float, input_sfe: flo
         return best_match_name, best_finish, sim
 
     try:
-        db_path = "E:/Github/SG_proj_010/data/substrate.db"
+        db_path = "/Users/hyunchanan/Documents/GitHub/SG_proj_010/data/substrate.db"
         if not os.path.exists(db_path):
             logger.info("010: Database file not found. Running build_db.py locally...")
             import subprocess
-            subprocess.run(["python", "E:/Github/SG_proj_010/src/build_db.py"], check=True)
+            subprocess.run(["python", "/Users/hyunchanan/Documents/GitHub/SG_proj_010/src/build_db.py"], check=True)
             
         df_sus = load_and_preprocess_data(db_path)
         matcher = SubstrateMatcher(df_sus)
