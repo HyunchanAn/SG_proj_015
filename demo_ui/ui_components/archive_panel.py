@@ -50,8 +50,13 @@ def render_archive_panel(t):
     if st.button(t["archive_btn"], use_container_width=True):
         result = st.session_state.get("pipeline_result", {})
         status = result.get("status", "error")
-        rev_data = result.get("reverse_engineering", {})
         
+        rev_data = {}
+        if status == "matched":
+            rev_data = result.get("reverse_engineered_result", {})
+        elif status == "reverse_engineered":
+            rev_data = result.get("result", {})
+            
         archive_dir = Path("/Users/hyunchanan/Documents/GitHub/SG_proj_015/reports_archive/demo_reports")
         archive_dir.mkdir(parents=True, exist_ok=True)
 
@@ -94,7 +99,7 @@ def render_archive_panel(t):
             recoms = match_data.get("recommendations", [])
             report_content += "## 3. Product Matching Results\n"
             for r_idx, r in enumerate(recoms):
-                report_content += f"- Rank {r_idx+1}: {r.get('product_code')} (Score: {r.get('match_score'):.2%})\n"
+                report_content += f"- Rank {r_idx+1}: {r.get('product_code')} (Score: {r.get('match_score'):.2f}%)\n"
                 report_content += f"  - Reason: {json.dumps(r.get('match_reason'), indent=2)}\n"
         else:
             report_content += "## 3. Product Matching Results\n- No database matches found.\n"
