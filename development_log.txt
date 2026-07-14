@@ -169,3 +169,12 @@
   - 010 피착재 판단 알림 카드의 HTML 특수 이모지를 제거하여 유니코드 브라우저 파싱 인코딩 깨짐 현상을 해결 완료.
   - 2단계 입력 폼의 `제품명 (피착재명)` 및 `표면 마감` 셀렉트박스 컴포넌트에 `disabled=True` 속성을 강제 주입하여 010 비전 자동 판단 결과 바인딩을 고정시키고 사용자의 수동 조작 실수를 원천 방지 완료.
   - st.session_state 내 `pipeline_result` 세션 키 초기화 및 get 메서드 None 검증 보호 코드를 적용하여 KeyError 예외를 완전 봉쇄 완료.
+
+---
+Date: 2026-07-14
+Author: Antigravity
+
+[Updates]
+- Hardware Specs updated in README.md from RTX 5080/Windows to Apple M2 Pro/macOS.
+- Completed all local E2E and unit tests on macOS successfully without abort traps.
+- Verified GitHub Actions CI/CD workflows for the projects.
