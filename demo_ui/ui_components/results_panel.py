@@ -159,7 +159,10 @@ def render_results_panel(t):
             pass_badge = t["verdict_passed"] if is_passed else t["verdict_failed"]
             st.write(f"{t['verdict_label']}: {pass_badge}")
             st.write(f"{t['gnn_conf_label']}: {conf_score:.2%}")
-            st.progress(conf_score)
+            
+            # Ensure progress_val is exactly within [0.0, 1.0] to prevent StreamlitAPIException
+            progress_val = max(0.0, min(1.0, conf_score))
+            st.progress(progress_val)
 
             st.markdown(f"#### {t['adh_rhead_label']}")
             pred_props = rev_data.get("predicted_properties", {})

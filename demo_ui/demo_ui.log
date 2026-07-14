@@ -603,3 +603,170 @@ For `use_container_width=True`, use `width='stretch'`. For `use_container_width=
 `use_container_width` will be removed after 2025-12-31.
 
 For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 16:56:54.812 | INFO     | core.api_client:start_local_orchestrator:49 - Local orchestrator is already running.
+2026-07-14 16:56:54.864 | INFO     | core.api_client:start_local_orchestrator:49 - Local orchestrator is already running.
+2026-07-14 16:56:54.946 | INFO     | core.api_client:trigger_all_metrology_analyses_automatically:295 - Triggering auto-metrology analyses for preset: HL
+2026-07-14 16:57:21.661 | DEBUG    | deepdrop_sfe.physics_engine:calculate_contact_angle:131 - Solving contact angle: droplet V: 200.0 uL, contact radius r: 5.4400 mm
+2026-07-14 16:57:21.667 | INFO     | deepdrop_sfe.physics_engine:calculate_contact_angle:184 - Numerical solver converged. Solved Theta: 68.7548 degrees
+2026-07-14 16:57:24.521 | DEBUG    | deepdrop_sfe.physics_engine:calculate_contact_angle:131 - Solving contact angle: droplet V: 200.0 uL, contact radius r: 4.6174 mm
+2026-07-14 16:57:24.522 | INFO     | deepdrop_sfe.physics_engine:calculate_contact_angle:184 - Numerical solver converged. Solved Theta: 88.8310 degrees
+2026-07-14 16:57:24.543 | INFO     | deepdrop_sfe.physics_engine:calculate_owrk:239 - OWRK regression computed successfully. Total SFE: 72.3786 mN/m (Dispersive: 0.0000, Polar: 72.3786)
+2026-07-14 16:57:24.668 | INFO     | vsams.analysis.surface_evaluator:analyze:45 - V-SAMS: Starting surface analysis.
+2026-07-14 16:57:24.693 | INFO     | vsams.analysis.surface_evaluator:_auto_detect_boxes:242 - V-SAMS: Coin automatically located. Coin box: [1021, 616, 2169, 1764], Ref box: [1021, 1820, 2169, 2968]
+2026-07-14 16:57:24.717 | INFO     | vsams.analysis.surface_evaluator:_estimate_roughness_and_gloss:320 - V-SAMS: Estimated physical attributes - Roughness Ra: 0.1956 um, Gloss: 265.6 GU (SharpRatio: 1.0122)
+2026-07-14 16:57:45.105 | INFO     | sg_terra.seg.sam2_wrapper:segment_target:96 - SAM 2 segmentation complete. Mask shape: (750, 1000), Confidence Score: 0.9326, Latency: 333.25 ms
+2026-07-14 16:57:48.286 | INFO     | sg_terra.topo.depth_wrapper:estimate_depth:100 - Depth estimation complete. Depth map shape: (750, 1000), Latency: 3145.64 ms
+2026-07-14 16:57:48.322 | INFO     | sg_terra.curv.curvature:calculate_gaussian_curvature:49 - Gaussian curvature computation complete. Shape: (750, 1000)
+2026-07-14 16:57:48.323 | DEBUG    | sg_terra.curv.curvature:find_critical_points:91 - Locating top-1 critical stress points in curvature map.
+2026-07-14 16:57:48.345 | INFO     | sg_terra.curv.curvature:find_critical_points:105 - Top critical point identified. Max curvature value: 0.018821 at coordinate (np.int64(298), np.int64(666))
+2026-07-14 16:58:04.842 | INFO     | core.api_client:start_local_orchestrator:49 - Local orchestrator is already running.
+2026-07-14 16:58:04.868 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 16:58:04.942 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 16:58:05.011 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 16:58:05.077 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 16:58:05.149 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 16:58:05.211 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 16:58:05.270 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 16:58:05.272 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 16:58:05.278 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 16:58:05.289 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:07:32.475 | INFO     | core.api_client:start_local_orchestrator:49 - Local orchestrator is already running.
+2026-07-14 17:07:32.596 | INFO     | core.api_client:trigger_all_metrology_analyses_automatically:295 - Triggering auto-metrology analyses for preset: HL
+2026-07-14 17:07:59.359 | DEBUG    | deepdrop_sfe.physics_engine:calculate_contact_angle:131 - Solving contact angle: droplet V: 200.0 uL, contact radius r: 5.4400 mm
+2026-07-14 17:07:59.367 | INFO     | deepdrop_sfe.physics_engine:calculate_contact_angle:184 - Numerical solver converged. Solved Theta: 68.7548 degrees
+2026-07-14 17:08:02.051 | DEBUG    | deepdrop_sfe.physics_engine:calculate_contact_angle:131 - Solving contact angle: droplet V: 200.0 uL, contact radius r: 4.6174 mm
+2026-07-14 17:08:02.051 | INFO     | deepdrop_sfe.physics_engine:calculate_contact_angle:184 - Numerical solver converged. Solved Theta: 88.8310 degrees
+2026-07-14 17:08:02.063 | INFO     | deepdrop_sfe.physics_engine:calculate_owrk:239 - OWRK regression computed successfully. Total SFE: 72.3786 mN/m (Dispersive: 0.0000, Polar: 72.3786)
+2026-07-14 17:08:02.200 | INFO     | vsams.analysis.surface_evaluator:analyze:45 - V-SAMS: Starting surface analysis.
+2026-07-14 17:08:02.228 | INFO     | vsams.analysis.surface_evaluator:_auto_detect_boxes:242 - V-SAMS: Coin automatically located. Coin box: [1021, 616, 2169, 1764], Ref box: [1021, 1820, 2169, 2968]
+2026-07-14 17:08:02.254 | INFO     | vsams.analysis.surface_evaluator:_estimate_roughness_and_gloss:320 - V-SAMS: Estimated physical attributes - Roughness Ra: 0.1956 um, Gloss: 265.6 GU (SharpRatio: 1.0122)
+2026-07-14 17:08:24.031 | INFO     | sg_terra.seg.sam2_wrapper:segment_target:96 - SAM 2 segmentation complete. Mask shape: (750, 1000), Confidence Score: 0.9326, Latency: 155.54 ms
+2026-07-14 17:08:26.429 | INFO     | sg_terra.topo.depth_wrapper:estimate_depth:100 - Depth estimation complete. Depth map shape: (750, 1000), Latency: 2364.80 ms
+2026-07-14 17:08:26.472 | INFO     | sg_terra.curv.curvature:calculate_gaussian_curvature:49 - Gaussian curvature computation complete. Shape: (750, 1000)
+2026-07-14 17:08:26.474 | DEBUG    | sg_terra.curv.curvature:find_critical_points:91 - Locating top-1 critical stress points in curvature map.
+2026-07-14 17:08:26.495 | INFO     | sg_terra.curv.curvature:find_critical_points:105 - Top critical point identified. Max curvature value: 0.018821 at coordinate (np.int64(298), np.int64(666))
+2026-07-14 17:08:37.683 | INFO     | core.api_client:start_local_orchestrator:49 - Local orchestrator is already running.
+2026-07-14 17:08:37.713 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:08:37.794 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:08:37.869 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:08:37.938 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:08:38.011 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:08:38.074 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:08:38.171 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:08:38.173 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:08:38.183 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+2026-07-14 17:08:38.192 Please replace `use_container_width` with `width`.
+
+`use_container_width` will be removed after 2025-12-31.
+
+For `use_container_width=True`, use `width='stretch'`. For `use_container_width=False`, use `width='content'`.
+[31m──[0m[31m────────────────────────[0m[31m [0m[1;31mTraceback [0m[1;2;31m(most recent call last)[0m[31m [0m[31m─────────────────────────[0m[31m──[0m
+[31m [0m [2m/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/streamlit/runtime[0m [31m [0m
+[31m [0m [2m/scriptrunner/[0m[1mexec_code.py[0m:129 in exec_func_with_error_handling                      [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/streamlit/runtime[0m [31m [0m
+[31m [0m [2m/scriptrunner/[0m[1mscript_runner.py[0m:671 in code_to_exec                                   [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/Users/hyunchanan/Documents/GitHub/SG_proj_015/demo_ui/[0m[1mapp.py[0m:40 in <module>         [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m   [2m37 [0mst.markdown([33m'[0m[33m---[0m[33m'[0m)                                                              [31m [0m
+[31m [0m   [2m38 [0mrender_step1_vision(t)                                                          [31m [0m
+[31m [0m   [2m39 [0mrender_input_panel(t)                                                           [31m [0m
+[31m [0m [31m❱ [0m40 [1;4mrender_results_panel(t)[0m                                                         [31m [0m
+[31m [0m   [2m41 [0mrender_archive_panel(t)                                                         [31m [0m
+[31m [0m   [2m42 [0m                                                                                [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/Users/hyunchanan/Documents/GitHub/SG_proj_015/demo_ui/ui_components/[0m[1mresults_panel.p[0m [31m [0m
+[31m [0m [1my[0m:162 in render_results_panel                                                        [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m   [2m159 [0m[2m│   │   │   [0mst.write([33mf[0m[33m"[0m[33m{[0mt[[33m'[0m[33mverdict_label[0m[33m'[0m][33m}[0m[33m: [0m[33m{[0mpass_badge[33m}[0m[33m"[0m)                    [31m [0m
+[31m [0m   [2m160 [0m[2m│   │   │   [0mst.write([33mf[0m[33m"[0m[33m{[0mt[[33m'[0m[33mgnn_conf_label[0m[33m'[0m][33m}[0m[33m: [0m[33m{[0mconf_score[33m:[0m[33m.2%[0m[33m}[0m[33m"[0m)               [31m [0m
+[31m [0m   [2m161 [0m[2m│   │   │   [0mst.progress(conf_score)                                            [31m [0m
+[31m [0m [31m❱ [0m162 [2m│   │   │   [0m                                                                   [31m [0m
+[31m [0m   [2m163 [0m[2m│   │   │   [0mst.markdown([33mf[0m[33m"[0m[33m#### [0m[33m{[0mt[[33m'[0m[33madh_rhead_label[0m[33m'[0m][33m}[0m[33m"[0m)                        [31m [0m
+[31m [0m   [2m164 [0m[2m│   │   │   [0mpred_props = rev_data.get([33m"[0m[33mpredicted_properties[0m[33m"[0m, {})              [31m [0m
+[31m [0m   [2m165 [0m[2m│   │   │   [0merror_rates = rev_data.get([33m"[0m[33merror_rates[0m[33m"[0m, {})                      [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/streamlit/element[0m [31m [0m
+[31m [0m [2ms/[0m[1mprogress.py[0m:159 in progress                                                        [31m [0m
+[31m [0m                                                                                      [31m [0m
+[31m [0m [2m/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/streamlit/element[0m [31m [0m
+[31m [0m [2ms/[0m[1mprogress.py[0m:72 in _get_value                                                       [31m [0m
+[31m────────────────────────────────────────────────────────────────────────────────────────[0m
+[1;91mStreamlitAPIException: [0mProgress Value has invalid value [1m[[0m[1;36m0.0[0m, [1;36m1.0[0m[1m][0m: [1;36m32.344748942057294[0m
