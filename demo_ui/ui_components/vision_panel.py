@@ -54,7 +54,17 @@ def render_step1_vision(t):
     # Automatically run all analyses when specimen preset is changed or initial load happens
     if st.session_state["last_demo_preset"] != selected_demo_preset:
         st.session_state["last_demo_preset"] = selected_demo_preset
+        
+        loading_ui = st.empty()
+        with loading_ui.container():
+            st.markdown("<h3 style='text-align: center; color: #4B90E2;'>Surfy가 생각하고 있어요... 💭</h3>", unsafe_allow_html=True)
+            col1, col2, col3 = st.columns([1, 2, 1])
+            with col2:
+                st.image("/Users/hyunchanan/Documents/GitHub/SG_proj_015/Surfy_gif_002.gif", use_container_width=True)
+        
         trigger_all_metrology_analyses_automatically(selected_demo_preset)
+        
+        loading_ui.empty()
         st.rerun()
 
     base_droplet_path = Path("/Users/hyunchanan/Documents/GitHub/SG_proj_015/260521 test_image (droplet)")

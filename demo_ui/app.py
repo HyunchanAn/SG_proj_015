@@ -133,22 +133,16 @@ if "auto_e2e_completed" not in st.session_state:
     loading_container = st.empty()
     
     with loading_container.container():
-        st.info("🚀 [전자동화 모드] 사용자의 개입 없이 HL, 2B, BA 3종 피착재에 대한 E2E 통합 파이프라인 분석을 백그라운드에서 비동기 병렬로 동시 실행합니다...")
+        st.markdown("<h3 style='text-align: center; color: #4B90E2;'>Surfy가 시연용 사진을 분석하고 있어요... 📸</h3>", unsafe_allow_html=True)
         
         # Centered GIF
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
             st.image("/Users/hyunchanan/Documents/GitHub/SG_proj_015/Surfy_gif_001.gif", use_container_width=True)
 
-        with st.spinner("비동기 병렬 처리 중... (서버 부하에 따라 몇 초 소요될 수 있습니다)"):
-            st.markdown("<h3 style='text-align: center;'>Surfy가 생각하고 있어요... 💭</h3>", unsafe_allow_html=True)
-            col4, col5, col6 = st.columns([1, 2, 1])
-            with col5:
-                st.image("/Users/hyunchanan/Documents/GitHub/SG_proj_015/Surfy_gif_002.gif", use_container_width=True)
-
-            substrates = ["HL", "2B", "BA"]
-            completed = 0
-            with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+        substrates = ["HL", "2B", "BA"]
+        completed = 0
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
                 futures = {executor.submit(auto_run_e2e_background, s): s for s in substrates}
                 for future in concurrent.futures.as_completed(futures):
                     s = futures[future]
