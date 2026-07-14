@@ -415,15 +415,15 @@ def render_step1_vision(t):
             status_msg = "<br><span style='color: #f59e0b; font-weight: bold;'>[오프라인 알림] 010 API 서비스 포트(8010) 오프라인 상태로 인해, 대시보드 내 인메모리 로컬 물리 매처(SubstrateMatcher)로 대체 분석을 수행했습니다.</span>"
 
         st.markdown(f"""
-        <div style="{status_style}">
-            <h4 style="margin: 0; color: {title_color};">[010 피착재 자동 판단 모듈 (Material ID)]</h4>
-            <p style="margin: 0.5rem 0 0 0; color: #cbd5e1; font-size: 0.95rem;">
-                비전 계측 물성 대조 분석 결과, 감지된 피착재는 <b>{st.session_state['identified_substrate']}</b> 입니다. (정합 유사도: <b>{st.session_state['identified_similarity']:.2f}%</b>)
-                {status_msg}
-                <br><span style="font-size: 0.85rem; color: #94a3b8;">*이 판단 결과는 아래 2단계 제품명(피착재명)에 자동으로 자동 바인딩되었습니다.</span>
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+<div style="{status_style}">
+    <h4 style="margin: 0; color: {title_color};">[010 피착재 자동 판단 모듈 (Material ID)]</h4>
+    <p style="margin: 0.5rem 0 0 0; color: #cbd5e1; font-size: 0.95rem;">
+        비전 계측 물성 대조 분석 결과, 감지된 피착재는 <b>{st.session_state['identified_substrate']}</b> 입니다. (정합 유사도: <b>{st.session_state['identified_similarity']:.2f}%</b>)
+        {status_msg}
+        <br><span style="font-size: 0.85rem; color: #94a3b8;">*이 판단 결과는 아래 2단계 제품명(피착재명)에 자동으로 바인딩되었습니다.</span>
+    </p>
+</div>
+""", unsafe_allow_html=True)
 
 
         st.caption("010 Matching Diagnostic Database Comparison Profile:")
