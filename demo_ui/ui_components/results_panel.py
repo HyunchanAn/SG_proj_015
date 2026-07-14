@@ -196,7 +196,7 @@ def render_results_panel(t):
                 fig = go.Figure(data=[go.Pie(
                     labels=labels, 
                     values=values, 
-                    circle=.4,
+                    hole=.4,
                     marker=dict(colors=["#1f4068", "#162447", "#e43f5a", "#3b82f6", "#10b981", "#f59e0b"])
                 )])
                 fig.update_layout(
