@@ -280,7 +280,7 @@ if "pipeline_result" not in st.session_state:
     st.session_state["pipeline_result"] = None
 
 # Real TCP socket connection check to diagnose service ports
-@st.cache_data(ttl=10)
+@st.cache_data(ttl=10, show_spinner=False)
 def trigger_all_metrology_analyses_automatically(preset_name: str):
     if "preset_cache" not in st.session_state:
         st.session_state["preset_cache"] = {}
