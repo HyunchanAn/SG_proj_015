@@ -141,6 +141,11 @@ if "auto_e2e_completed" not in st.session_state:
             st.image("/Users/hyunchanan/Documents/GitHub/SG_proj_015/Surfy_gif_001.gif", use_container_width=True)
 
         with st.spinner("비동기 병렬 처리 중... (서버 부하에 따라 몇 초 소요될 수 있습니다)"):
+            st.markdown("<h3 style='text-align: center;'>Surfy가 생각하고 있어요... 💭</h3>", unsafe_allow_html=True)
+            col4, col5, col6 = st.columns([1, 2, 1])
+            with col5:
+                st.image("/Users/hyunchanan/Documents/GitHub/SG_proj_015/Surfy_gif_002.gif", use_container_width=True)
+
             substrates = ["HL", "2B", "BA"]
             completed = 0
             with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
