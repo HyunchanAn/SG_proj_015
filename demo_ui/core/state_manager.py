@@ -155,5 +155,3 @@ def init_state():
     if "pipeline_result" not in st.session_state:
         st.session_state["pipeline_result"] = None
 
-    # Real TCP socket connection check to diagnose service ports
-    @st.cache_data(ttl=10)
