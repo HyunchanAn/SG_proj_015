@@ -43,9 +43,10 @@ flowchart TD
     end
 
     %% 015 데이터 관제탑 (이 프로젝트)
-    subgraph HUB ["SG_proj_015: 데이터 관제탑 & 아카이브 (본 모듈)"]
+    subgraph HUB ["SG_proj_015: 데이터 관제탑 & CLI (본 모듈)"]
         IMG["실측 데이터셋 (2B, BA, HL)"]
-        REP["reports_archive: E2E 통합 검증 보고서 보관소"]
+        REP["reports_archive: 통합 검증 보고서 보관소"]
+        CLI["cli_operator.py: 오케스트레이터 제어 CLI"]
     end
 
     %% 1단계 -> 2단계 데이터 연동
@@ -118,6 +119,8 @@ flowchart TD
 
 ## 디렉토리 구조
 
+*   `scripts/workspace_automation/`: 17개 하위 프로젝트(SG_proj 및 SG_integration) 전체를 관장하는 DevOps 툴킷입니다. E2E 배치 테스트(`run_all_tests.sh`), 하드웨어 스펙 문서 치환(`update_readme_hw.py`), 그리고 Git 일괄 푸시(`push_all.sh`) 등 관제탑 제어 스크립트들을 보관합니다.
+*   `demo_ui/prototype/`: 브라우저에서 단독 실행되는 단일 파일 기반 프리미엄 통합 UI 프로토타입(`SG_Adhesion_Nexus_Prototype.html`) 및 설명서를 보관합니다.
 *   `reports_archive/`: E2E 연쇄 연산이 완료된 후 산출된 날짜별 통합 E2E 검증 보고서들이 이주 및 적재되어 영구 보존됩니다.
 *   `reports_archive/images/`: 보고서 렌더링에 필요한 마스킹 결과 이미지와 깊이 맵 등 모든 실물 캡처 사진 리소스들이 모여 있어 링크 깨짐을 방지합니다.
 *   `260408 PCM HL/`, `260521 test_image (droplet)/`: E2E 파이프라인의 실 계측을 위한 2B, BA, HL 강판 원본 실물 이미지 데이터셋이 적재되어 있습니다.
@@ -133,8 +136,15 @@ flowchart TD
 ## 2026-07-05 업데이트 (통합)
 - 전 모듈 GPU 가속 컨테이너화 및 014 비동기 안정성 확보 완료.
 
+## 2026-07-14 업데이트 (자동화 스크립트 관제탑 편입)
+- GitHub 루트 디렉토리에 파편화되어 있던 일괄 테스트, 문서 치환, 푸시 쉘 스크립트 7종을 `scripts/workspace_automation/` 경로로 리팩토링 및 통합 관리.
+
 ## 2026-07-13 업데이트 (임시 시연 UI 추가)
 - E2E 통합 파이프라인 시연을 위한 임시 UI 대시보드(demo_ui/)를 개발 완료했습니다. 
+
+## 2026-07-17 업데이트 (UI 프로토타입 - 014 오케스트레이터 풀 연동)
+- `demo_ui/prototype/SG_Adhesion_Nexus_Prototype.html` 파일이 단순 목업을 넘어 실제 **014 FastAPI 오케스트레이터와 비동기 POST 통신(Fetch API)**을 수행하도록 풀(Full) 연동 리팩토링 되었습니다.
+- 구버전 목업 UI는 `SG_Adhesion_Nexus_Prototype_Mockup.html`로 영구 보존되었습니다.
 
 ## 설치 및 실행 방법
 1. 가상환경 활성화 및 필요 의존성 패키지 설치
@@ -142,10 +152,9 @@ flowchart TD
    cd e:/Github/SG_proj_015/demo_ui
    pip install -r requirements.txt
    ```
-2. 시연 UI 실행 (배치 파일 이용 또는 streamlit 실행 명령)
-   - e:/Github/SG_proj_015/demo_ui/run_ui.bat 파일을 더블 클릭하여 실행하거나, 터미널에서 다음 명령어를 입력합니다.
-   ```bash
-   streamlit run app.py
-   ```
-3. Docker Desktop 및 로컬 마이크로서비스 구동 상태가 ONLINE으로 확인되면 정상적으로 시연 조작이 가능합니다.
+2. **(중요)** 백엔드 API 구동
+   - 015의 프론트엔드를 테스트하기 전, 반드시 `SG_proj_014` 폴더 내에 있는 `boot_api.bat`를 실행하여 8024 포트의 API 오케스트레이터 서버를 먼저 켜야 합니다.
+3. 시연 UI 실행 (단독 HTML)
+   - `e:/Github/SG_proj_015/demo_ui/prototype/SG_Adhesion_Nexus_Prototype.html` 파일을 크롬/엣지 등의 브라우저에서 직접 열어 사용합니다.
+   - 화면 우측 상단의 "통합 AI 추론 실행 (014 연동)" 버튼을 누르면 실시간 연동 테스트가 가능합니다.
 

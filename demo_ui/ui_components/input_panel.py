@@ -84,10 +84,16 @@ def render_input_panel(t):
         target_tg_val = st.slider(t["target_tg"], min_value=-80.0, max_value=0.0, value=-25.0, step=1.0)
         target_viscosity = st.number_input(t["target_visc"], min_value=0.0, max_value=20000.0, value=4000.0, step=100.0)
 
-        submit_button = st.form_submit_button(t["trigger_btn"], use_container_width=True)
+        col_btn1, col_btn2, col_btn3 = st.columns(3)
+        with col_btn1:
+            submit_button = st.form_submit_button("전체 E2E 오케스트레이션 실행 (기본)", use_container_width=True)
+        with col_btn2:
+            submit_cvae = st.form_submit_button("🚀 0.1초 AI 초고속 역설계 (CVAE)", use_container_width=True)
+        with col_btn3:
+            submit_nsga2 = st.form_submit_button("⚖️ 다목적 파레토 최적화 (NSGA-II)", use_container_width=True)
 
     # Processing E2E pipeline
-    if submit_button:
+    if submit_button or submit_cvae or submit_nsga2:
         validation_passed = True
 
         if target_init_adh > target_aged_adh:
@@ -121,14 +127,59 @@ def render_input_panel(t):
             }
 
             st.session_state["payload_sent"] = payload
-            orchestrator_url = "http://localhost:8024/orchestrate"
+            
+            # Determine target URL based on which button was clicked
+            if submit_button:
+                endpoint = "/orchestrate"
+            elif submit_cvae:
+                endpoint = "/inverse_cvae"
+                # Need to map payload format to 001's API format
+                payload = {
+                    "target_properties": {
+                        "측정_값": target_init_adh,
+                        "점도(cP)": target_viscosity,
+                        "Tg": target_tg_val
+                    },
+                    "fixed_context": {
+                        "박리_각도": 180.0,
+                        "온도": 80.0,
+                        "반응시간": 5.0
+                    }
+                }
+            elif submit_nsga2:
+                endpoint = "/inverse_nsga2"
+                # Need to map payload format to 001's API format
+                payload = {
+                    "target_properties": {
+                        "측정_값": target_init_adh,
+                        "점도(cP)": target_viscosity,
+                        "Tg": target_tg_val
+                    },
+                    "fixed_context": {
+                        "박리_각도": 180.0,
+                        "온도": 80.0,
+                        "반응시간": 5.0
+                    }
+                }
+
+            orchestrator_url = f"http://localhost:8024{endpoint}"
 
             with st.spinner(t["trigger_spinner"]):
                 try:
                     res = requests.post(orchestrator_url, json=payload, timeout=120.0)
                     if res.status_code == 200:
-                        st.session_state["pipeline_result"] = res.json()
-                        st.success(t["success_msg"])
+                        if submit_button:
+                            st.session_state["pipeline_result"] = res.json()
+                        elif submit_cvae:
+                            st.success("CVAE 초고속 역설계 완료!")
+                            st.json(res.json())
+                            st.session_state["pipeline_result"] = None # Don't render full E2E dashboard
+                        elif submit_nsga2:
+                            st.success("NSGA-II 다목적 파레토 최적화 완료!")
+                            st.json(res.json())
+                            st.session_state["pipeline_result"] = None # Don't render full E2E dashboard
+                        if submit_button:
+                            st.success(t["success_msg"])
                     elif res.status_code == 422:
                         st.session_state["pipeline_result"] = None
                         err_data = res.json()

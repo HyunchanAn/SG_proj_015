@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SG-Adhesion Nexus - Premium Prototype</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+        :root {
+            --bg-base: #05050A;
+            --glass-bg: rgba(20, 20, 30, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-emerald: #10b981;
+            --accent-emerald-glow: rgba(16, 185, 129, 0.3);
+            --accent-purple: #8b5cf6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-mono: 'JetBrains Mono', monospace;
+            --font-main: 'Inter', sans-serif;
+            --font-head: 'Outfit', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Ambient Glowing Orbs */
+        .ambient-orb { position: absolute; border-radius: 50%; filter: blur(120px); z-index: -1; opacity: 0.5; animation: float 10s infinite alternate ease-in-out; }
+        .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%); }
+        .orb-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%); animation-delay: -5s; }
+        @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, 30px); } }
+
+        /* Header */
+        header {
+            height: 70px; backdrop-filter: blur(20px); background: rgba(5, 5, 10, 0.7); border-bottom: 1px solid var(--glass-border);
+            display: flex; align-items: center; justify-content: space-between; padding: 0 30px; flex-shrink: 0; z-index: 10;
+        }
+        .brand { display: flex; align-items: center; gap: 12px; font-family: var(--font-head); font-weight: 600; letter-spacing: 1px; }
+        .brand-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent-emerald); box-shadow: 0 0 10px var(--accent-emerald); animation: pulse 2s infinite; }
+        .brand-tag { font-size: 11px; padding: 4px 8px; border-radius: 4px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: var(--text-muted); }
+        @keyframes pulse { 0% { opacity: 0.5; box-shadow: 0 0 0px var(--accent-emerald); } 50% { opacity: 1; box-shadow: 0 0 15px var(--accent-emerald); } 100% { opacity: 0.5; box-shadow: 0 0 0px var(--accent-emerald); } }
+
+        /* Tabs Nav */
+        .tabs-nav { display: flex; background: rgba(0,0,0,0.4); padding: 6px; border-radius: 12px; border: 1px solid var(--glass-border); gap: 8px; }
+        .tab-btn {
+            background: transparent; border: none; color: var(--text-muted); padding: 8px 16px; font-size: 13px;
+            font-family: var(--font-head); font-weight: 500; border-radius: 8px; cursor: pointer; transition: all 0.3s;
+        }
+        .tab-btn:hover { color: #fff; background: rgba(255,255,255,0.05); }
+        .tab-btn.active { background: linear-gradient(135deg, rgba(16,185,129,0.8), rgba(5,150,105,0.8)); color: #fff; box-shadow: 0 4px 15px var(--accent-emerald-glow); }
+        .node-status { font-family: var(--text-mono); font-size: 12px; color: var(--accent-emerald); padding: 6px 12px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 6px; }
+
+        /* Layout */
+        .workspace { flex: 1; display: flex; overflow: hidden; position: relative; z-index: 5; }
+        .tab-content { flex: 1; display: none; padding: 24px; gap: 24px; overflow-y: auto; flex-direction: column; }
+        .tab-content.active { display: flex; animation: fade-in 0.4s ease-out; }
+        @media (min-width: 1024px) { .tab-content.active { flex-direction: row; } }
+        @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--glass-bg); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: 16px;
+            padding: 24px; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover { border-color: rgba(255,255,255,0.15); box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1); }
+        .glass-card.warning-box { background: rgba(245,158,11,0.05); border-color: rgba(245,158,11,0.2); }
+        .col { flex: 1; display: flex; flex-direction: column; gap: 24px; min-width: 320px; }
+
+        /* Typography & Badges */
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .card-title { font-family: var(--font-head); font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #fff; }
+        .badge { font-size: 11px; padding: 4px 8px; border-radius: 4px; font-family: var(--text-mono); border: 1px solid; }
+        .badge.emerald { background: rgba(16,185,129,0.1); color: var(--accent-emerald); border-color: rgba(16,185,129,0.3); }
+        .badge.red { background: rgba(239,68,68,0.1); color: #ef4444; border-color: rgba(239,68,68,0.3); }
+        .badge.indigo { background: rgba(99,102,241,0.1); color: #818cf8; border-color: rgba(99,102,241,0.3); }
+        .badge.amber { background: rgba(245,158,11,0.1); color: #fbbf24; border-color: rgba(245,158,11,0.3); }
+        .desc-text { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px; }
+
+        /* Controls */
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .btn { padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; font-family: var(--font-main); transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .btn::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(255,255,255,0.1), transparent); opacity: 0; transition: opacity 0.3s; }
+        .btn:hover::after { opacity: 1; }
+        .btn-emerald { background: var(--accent-emerald); color: #fff; box-shadow: 0 4px 15px var(--accent-emerald-glow); }
+        .btn-emerald:hover { transform: translateY(-1px); box-shadow: 0 6px 20px var(--accent-emerald-glow); }
+        .btn-outline { background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid var(--glass-border); }
+        .btn-outline:hover { color: #fff; background: rgba(255,255,255,0.1); }
+        .btn-full { width: 100%; margin-top: 20px; }
+
+        .control-group { margin-bottom: 16px; }
+        .control-label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+        .control-row { display: flex; align-items: center; gap: 12px; }
+        input[type="range"] { -webkit-appearance: none; width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; outline: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent-emerald); cursor: pointer; box-shadow: 0 0 10px var(--accent-emerald-glow); transition: transform 0.2s; }
+        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+        .val-display { font-family: var(--text-mono); font-size: 13px; color: var(--accent-emerald); min-width: 45px; text-align: right; font-weight: 600; }
+        input[type="number"], select { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); border-radius: 6px; padding: 8px 12px; color: #fff; font-family: var(--text-mono); font-size: 13px; outline: none; transition: border-color 0.3s; }
+        input[type="number"]:focus, select:focus { border-color: var(--accent-emerald); box-shadow: 0 0 0 2px var(--accent-emerald-glow); }
+        
+        .check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+        .check-label { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.03); padding: 10px; border-radius: 6px; border: 1px solid var(--glass-border); cursor: pointer; transition: all 0.2s; }
+        .check-label:hover { background: rgba(255,255,255,0.08); }
+        .check-label input { accent-color: var(--accent-emerald); width: 16px; height: 16px; }
+        .check-text { font-size: 13px; color: var(--text-muted); }
+
+        /* Render Areas */
+        .render-box { background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); border-radius: 12px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); flex: 1; min-height: 200px; }
+        .render-box.p-4 { padding: 16px; }
+        .drop-row { display: flex; justify-content: space-around; width: 100%; align-items: flex-end; height: 120px; }
+        .drop-col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .drop-label { font-family: var(--text-mono); font-size: 11px; color: var(--text-muted); }
+        .canvas-container { position: relative; width: 100px; height: 70px; display: flex; align-items: flex-end; justify-content: center; }
+        
+        /* Stats Display */
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
+        .stat-box { background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); border-radius: 8px; padding: 12px; text-align: center; }
+        .stat-box.highlight { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.3); }
+        .stat-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
+        .stat-val { font-family: var(--text-mono); font-size: 16px; font-weight: 700; color: #fff; }
+        .stat-box.highlight .stat-val { color: var(--accent-emerald); }
+
+        /* Overlay elements for CV mockup */
+        .cv-overlay { position: absolute; inset: 0; background-size: 20px 100%; opacity: 0.3; background-image: linear-gradient(90deg, transparent 50%, rgba(255,255,255,0.05) 50%); }
+        .cv-glow { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%); }
+        .bbox { position: absolute; border: 1px solid; border-radius: 4px; padding: 2px 4px; font-family: var(--text-mono); font-size: 11px; display: flex; flex-direction: column; justify-content: flex-start; }
+        .bbox.red { border-color: #ef4444; background: rgba(239,68,68,0.15); color: #fca5a5; box-shadow: 0 0 10px rgba(239,68,68,0.3); }
+        .bbox.amber { border-color: #f59e0b; background: rgba(245,158,11,0.15); color: #fcd34d; box-shadow: 0 0 10px rgba(245,158,11,0.3); }
+        .overlay-text { position: absolute; bottom: 12px; right: 12px; font-family: var(--text-mono); font-size: 12px; color: var(--text-muted); z-index: 10; }
+
+        /* Tables */
+        .table-wrap { flex: 1; overflow-x: auto; margin-top: 12px; }
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 12px; font-family: var(--text-mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase; border-bottom: 1px solid var(--glass-border); }
+        th.right { text-align: right; }
+        td { padding: 12px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.05); color: #cbd5e1; }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+        tr.highlight-row td { background: rgba(16,185,129,0.1); color: #fff; font-weight: 500; }
+        tr.highlight-row-alt td { background: rgba(99,102,241,0.1); color: #fff; font-weight: 500; }
+        td.mono { font-family: var(--text-mono); }
+        td.right { text-align: right; }
+
+        /* Result List Info */
+        .info-row { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(0,0,0,0.3); border-radius: 6px; border: 1px solid var(--glass-border); margin-bottom: 16px; font-size: 12px; }
+        .info-label { color: var(--text-muted); }
+        .info-val { font-family: var(--text-mono); font-weight: 600; }
+        .info-val.red { color: #f87171; }
+        .info-val.emerald { color: #34d399; }
+
+        /* Blend Sliders */
+        .blend-row { margin-bottom: 16px; }
+        .blend-header { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; }
+        .blend-name { font-family: var(--text-mono); color: var(--text-muted); }
+        .blend-val { font-weight: 700; color: var(--accent-emerald); }
+
+        .summary-list { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--glass-border); display: flex; flex-direction: column; gap: 12px; font-size: 13px; }
+        .sum-row { display: flex; justify-content: space-between; }
+        .sum-lbl { color: var(--text-muted); }
+        .sum-val { font-family: var(--text-mono); font-weight: 600; }
+        .chart-wrap { position: relative; width: 100%; height: 100%; min-height: 200px; }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+
+    <header>
+        <div class="brand">
+            <div class="brand-dot"></div>
+            <span>SG-Adhesion Nexus</span>
+            <span class="brand-tag">Integrated R&D OS v1.0</span>
+        </div>
+        
+        <div class="tabs-nav">
+            <button onclick="switchTab('diagnostic')" id="tab-btn-diagnostic" class="tab-btn active">1. 표면 물리 진단 (002, 003, 007)</button>
+            <button onclick="switchTab('matching')" id="tab-btn-matching" class="tab-btn">2. 다차원 제품 매칭 (010, 008, 005)</button>
+            <button onclick="switchTab('synthesis')" id="tab-btn-synthesis" class="tab-btn">3. 고분자 역설계 & 분광 시뮬레이션 (001, 006, 009)</button>
+        </div>
+
+        <div class="node-status">RTX 5080 Node Online</div>
+    </header>
+
+    <div class="workspace">
+        
+        <!-- Tab 1 -->
+        <div id="tab-diagnostic" class="tab-content active">
+            <div class="col">
+                <div class="glass-card">
+                    <div class="card-header">
+                        <div class="card-title">액적 측정 상태 제어 (002)</div>
+                        <span class="badge emerald" id="seq-status">상태: 액적 투하 전 (Pre-drop)</span>
+                    </div>
+                    <div class="desc-text">동일 이미지에서 액적과 텍스처를 동시 분석할 때의 물리적 간섭을 상쇄하기 위해 다단계 분석 시퀀스를 강제 가동합니다.</div>
+                    <div class="btn-grid">
+                        <button onclick="setSequenceState('pre')" id="seq-btn-pre" class="btn btn-emerald">1단계: 미접촉 표면 분석</button>
+                        <button onclick="setSequenceState('post')" id="seq-btn-post" class="btn btn-outline">2단계: 접촉각 표면E 연산</button>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="flex: 1;">
+                    <div class="card-header"><div class="card-title">Sessile Drop & OWRK 엔진</div></div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">증류수 접촉각 (Water θ)</label>
+                        <div class="control-row">
+                            <input type="range" min="10" max="110" value="72" id="angle-water" oninput="runOWRK()">
+                            <span class="val-display" id="val-water">72°</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">디아이오도메탄 접촉각 (CH2I2 θ)</label>
+                        <div class="control-row">
+                            <input type="range" min="10" max="110" value="48" id="angle-diiodo" oninput="runOWRK()">
+                            <span class="val-display" id="val-diiodo">48°</span>
+                        </div>
+                    </div>
+
+                    <div class="render-box p-4" style="min-height: auto; margin-top: 10px;">
+                        <div class="drop-row">
+                            <div class="drop-col"><span class="drop-label">H2O</span><div class="canvas-container"><canvas id="canvas-drop-water" width="100" height="70"></canvas></div></div>
+                            <div class="drop-col"><span class="drop-label">CH2I2</span><div class="canvas-container"><canvas id="canvas-drop-diiodo" width="100" height="70"></canvas></div></div>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-box"><div class="stat-label">분산 기여도 (γS_d)</div><div class="stat-val" id="res-disp">- dyne</div></div>
+                        <div class="stat-box"><div class="stat-label">극성 기여도 (γS_p)</div><div class="stat-val" id="res-polar">- dyne</div></div>
+                        <div class="stat-box highlight"><div class="stat-label">총 표면 에너지 (γS)</div><div class="stat-val" id="res-total">- dyne</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="glass-card" style="flex: 1;">
+                    <div class="card-header">
+                        <div class="card-title">표면 텍스처 및 결함 탐지 (005, 003)</div>
+                        <span class="badge red">YOLO Detector Run</span>
+                    </div>
+                    
+                    <div class="render-box" style="margin-bottom: 20px;">
+                        <div class="cv-overlay"></div><div class="cv-glow"></div>
+                        <div class="bbox red" style="top: 25%; left: 15%; width: 60px; height: 35px;">Scratch: 92%</div>
+                        <div class="bbox amber" style="top: 60%; left: 55%; width: 45px; height: 45px;">Oil-stain: 87%</div>
+                        <span class="overlay-text">고정 반사광 제거 보정 가동 중</span>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">광학 검출 조도 (Ra ㎛)</label>
+                        <div class="control-row">
+                            <input type="range" min="1" max="100" value="8" id="input-ra" oninput="updateRoughnessValues()">
+                            <span class="val-display" id="lbl-ra" style="color:var(--text-muted);">0.08 ㎛</span>
+                        </div>
+                    </div>
+                    <div class="control-group" style="margin-bottom: 0;">
+                        <label class="control-label">반사 분산 광택도 (GU)</label>
+                        <div class="control-row">
+                            <input type="range" min="10" max="800" value="220" id="input-gloss" oninput="updateRoughnessValues()">
+                            <span class="val-display" id="lbl-gloss" style="color:var(--text-muted);">220 GU</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="glass-card" style="flex: 1;">
+                    <div class="card-header">
+                        <div class="card-title">3D Depth Map 형상 복원 (007)</div>
+                        <span class="badge" style="border-color: rgba(255,255,255,0.1); color: var(--text-muted);">드래그 제어</span>
+                    </div>
+                    <div class="desc-text">고반사 경면의 명암 변화를 해석하여 산곡 높이(Waviness)를 삼차원 투영 공간으로 도출한 실시간 3D 토포그래피 렌더러입니다.</div>
+                    <div class="render-box">
+                        <canvas id="canvas-3d-topography" style="width:100%; height:100%; cursor:grab;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2 -->
+        <div id="tab-matching" class="tab-content">
+            <div class="col" style="flex: 0 0 350px;">
+                <div class="glass-card">
+                    <div class="card-header"><div class="card-title">매칭 진단 피착재 쿼리</div></div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">사내 보유 피착재 실측값 템플릿 로드</label>
+                        <select onchange="loadSubstrateTemplate(this.value)">
+                            <option value="sus_ba">현대스틸 Stainless BA (초경면)</option>
+                            <option value="sus_2b">현대스틸 Stainless 2B (일반가공판)</option>
+                            <option value="sus_no4">현대스틸 Stainless #4 (조면 연마판)</option>
+                            <option value="pcm_white">LG PCM 유광 Super White</option>
+                        </select>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                        <div class="control-group" style="margin:0;"><label class="control-label">실측 조도 MD (㎛)</label><input type="number" step="0.01" id="match-ra-md" value="0.02"></div>
+                        <div class="control-group" style="margin:0;"><label class="control-label">실측 조도 TD (㎛)</label><input type="number" step="0.01" id="match-ra-td" value="0.04"></div>
+                        <div class="control-group" style="margin:0;"><label class="control-label">실측 광택 MD (GU)</label><input type="number" id="match-gloss-md" value="580"></div>
+                        <div class="control-group" style="margin:0;"><label class="control-label">실측 광택 TD (GU)</label><input type="number" id="match-gloss-td" value="560"></div>
+                        <div class="control-group" style="margin:0;"><label class="control-label">표면에너지 MD</label><input type="number" id="match-energy-md" value="38"></div>
+                        <div class="control-group" style="margin:0;"><label class="control-label">표면에너지 TD</label><input type="number" id="match-energy-td" value="38"></div>
+                    </div>
+
+                    <div style="margin-top: 16px; border-top: 1px solid var(--glass-border); padding-top: 16px;">
+                        <label class="control-label">후가공 공정 제약 조건 선택</label>
+                        <div class="check-grid">
+                            <label class="check-label"><input type="checkbox" id="process-drawing"><span class="check-text">딥드로잉 가공</span></label>
+                            <label class="check-label"><input type="checkbox" id="process-bending"><span class="check-text">절곡/벤딩 가공</span></label>
+                        </div>
+                    </div>
+
+                    <button onclick="executeMultiMatch()" class="btn btn-emerald btn-full">정규화 유사도 매칭 실행</button>
+                </div>
+
+                <div class="glass-card warning-box">
+                    <div class="card-header" style="margin-bottom: 10px;">
+                        <div class="card-title" style="color: #fbbf24; font-size: 13px;">차원 왜곡 극복 검증 (010 결함 제거)</div>
+                    </div>
+                    <div class="desc-text" style="font-size: 11px;">구식 로직에서는 수치 범위가 큰 광택도(GU)가 조도(㎛)를 완전히 지압하여 오분류 결과를 양산했습니다. Z-Score 정규화로 이를 해결했습니다.</div>
+                    <div class="info-row" style="margin:0;"><span class="info-label">구식 raw 매치율:</span><span class="info-val" id="raw-match-indicator">오차 왜곡 발생</span></div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="glass-card" style="flex: 1;">
+                    <div class="card-header"><div class="card-title">피착재 유사도 판별 매트릭스</div></div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>순위</th><th>대상 피착재 사양</th><th>조도(MD/TD)</th><th>광택(MD/TD)</th><th>매치 신뢰도</th><th class="right">상태</th></tr></thead>
+                            <tbody id="substrate-match-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="flex: 1;">
+                    <div class="card-header">
+                        <div class="card-title">가공 공정 최적 자사 점착 보호테이프 제안</div>
+                        <span class="badge emerald">세계화학공업 제품 DB 대입</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr><th>권장 제품명</th><th>기재 두께</th><th>점착제 계열 / Tg</th><th>기저 점착력</th><th>가공 적합성</th><th class="right">매치 종합 지수</th></tr></thead>
+                            <tbody id="tape-match-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3 -->
+        <div id="tab-synthesis" class="tab-content">
+            <div class="col" style="flex: 0 0 350px;">
+                <div class="glass-card">
+                    <div class="card-header"><div class="card-title">모노머 배합 튜너 및 기저 예측 엔진</div></div>
+                    
+                    <div class="blend-row">
+                        <div class="blend-header"><span class="blend-name">Butyl Acrylate (BA)</span><span class="blend-val" id="blend-val-ba">70%</span></div>
+                        <input type="range" min="0" max="100" value="70" id="blend-ba" oninput="runPolymerSynthesis()" class="blend-slider">
+                    </div>
+                    <div class="blend-row">
+                        <div class="blend-header"><span class="blend-name">2-Ethylhexyl Acrylate</span><span class="blend-val" id="blend-val-eha">25%</span></div>
+                        <input type="range" min="0" max="100" value="25" id="blend-eha" oninput="runPolymerSynthesis()" class="blend-slider">
+                    </div>
+                    <div class="blend-row">
+                        <div class="blend-header"><span class="blend-name">Acrylic Acid (AA)</span><span class="blend-val" id="blend-val-aa">3%</span></div>
+                        <input type="range" min="0" max="100" value="3" id="blend-aa" oninput="runPolymerSynthesis()" class="blend-slider">
+                    </div>
+                    <div class="blend-row" style="margin-bottom: 0;">
+                        <div class="blend-header"><span class="blend-name">Methyl Methacrylate</span><span class="blend-val" id="blend-val-mma">2%</span></div>
+                        <input type="range" min="0" max="100" value="2" id="blend-mma" oninput="runPolymerSynthesis()" class="blend-slider">
+                    </div>
+
+                    <div class="summary-list">
+                        <div class="sum-row"><span class="sum-lbl">배합 총합 검증:</span><span class="sum-val" id="blend-sum-status">100% (적합)</span></div>
+                        <div class="sum-row"><span class="sum-lbl">공중합체 예측 Tg (Fox):</span><span class="sum-val" style="color:var(--accent-emerald);" id="blend-calculated-tg">-℃</span></div>
+                        <div class="sum-row"><span class="sum-lbl">예측 점탄성 전단 계수 G':</span><span class="sum-val" id="blend-predicted-g">1.25 x 10^5 Pa</span></div>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="flex: 1;">
+                    <div class="card-header"><div class="card-title" style="font-size: 13px;">배합 물리 예측 프로파일</div></div>
+                    <div class="chart-wrap"><canvas id="chart-polymer-properties"></canvas></div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="glass-card" style="flex: 1;">
+                    <div class="card-header">
+                        <div class="card-title">FTIR 분광 스펙트럼 디컨볼루션 시뮬레이터 (009)</div>
+                        <span class="badge indigo">ATR Peak Deconvolution</span>
+                    </div>
+                    <div class="desc-text">에스테르 카르보닐기(C=O) 스트레칭 진동 부위(~1730 cm-1)의 피크 중첩 상태를 수치 해석 기법으로 디컨볼루션하여 배합 혼합물의 실제 구성 모노머 함량을 정밀 역추적합니다.</div>
+                    <div class="render-box p-4" style="flex: 1;"><div class="chart-wrap"><canvas id="chart-ftir-spectrum"></canvas></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Web App Main Logic Script -->
+    <script>
+        const rawSubstrateDatabase = [
+            { name: "현대스틸 SUS BA (No.1)", type: "SUS", brand: "현대스틸", thickness: 1.5, ra_md: 0.02, ra_td: 0.04, gloss_md: 580, gloss_td: 560, sfe_md: 38, sfe_td: 38, is_clean: "정상" },
+            { name: "현대스틸 SUS BA+세척수", type: "SUS", brand: "현대스틸", thickness: 1.5, ra_md: 0.03, ra_td: 0.03, gloss_md: 575, gloss_td: 550, sfe_md: 36, sfe_td: 36, is_clean: "세척수 잔류" },
+            { name: "현대스틸 SUS BA+타발유", type: "SUS", brand: "현대스틸", thickness: 1.5, ra_md: 0.03, ra_td: 0.03, gloss_md: 520, gloss_td: 490, sfe_md: 36, sfe_td: 36, is_clean: "타발유 오염" },
+            { name: "상재 SUS BA (No.24)", type: "SUS", brand: "상재", thickness: 0.4, ra_md: 0.05, ra_td: 0.08, gloss_md: 560, gloss_td: 460, sfe_md: 38, sfe_td: 36, is_clean: "정상" },
+            { name: "현대스틸 SUS 2B", type: "SUS", brand: "현대스틸", thickness: 1.5, ra_md: 0.08, ra_td: 0.13, gloss_md: 220, gloss_td: 170, sfe_md: 32, sfe_td: 32, is_clean: "정상" },
+            { name: "현대스틸 SUS #4", type: "SUS", brand: "현대스틸", thickness: 1.5, ra_md: 0.10, ra_td: 0.17, gloss_md: 320, gloss_td: 100, sfe_md: 40, sfe_td: 36, is_clean: "정상" },
+            { name: "LG PCM 유광 Super White", type: "PCM", brand: "LG", thickness: 0.5, ra_md: 0.08, ra_td: 0.08, gloss_md: 97.5, gloss_td: 95.6, sfe_md: 32, sfe_td: 32, is_clean: "정상" },
+            { name: "LG PCM 반광 에센스 블랙", type: "PCM", brand: "LG", thickness: 0.5, ra_md: 0.14, ra_td: 0.13, gloss_md: 51, gloss_td: 52, sfe_md: 30, sfe_td: 30, is_clean: "정상" }
+        ];
+
+        const tapeDatabase = [
+            { name: "SGV218ME", class: "PVC", thickness: 120, polymer: "Acryl 701", tg: -30.61, base_adhesion: 30, max_peel: 60, shear_hold: "95분", process_ok: ["bending", "slitting"] },
+            { name: "SGE113PH", class: "PE Blue", thickness: 50, polymer: "R040B:R080=7:3", tg: -39.43, base_adhesion: 60, max_peel: 45, shear_hold: "95분", process_ok: ["drawing", "slitting"] },
+            { name: "SGE116", class: "PE Clear", thickness: 80, polymer: "R040B:R080=7:3", tg: -39.43, base_adhesion: 60, max_peel: 50, shear_hold: "90분", process_ok: ["drawing", "slitting", "bending"] },
+            { name: "SGE133", class: "PE Blue", thickness: 50, polymer: "R040B:R080=7:3", tg: -39.43, base_adhesion: 50, max_peel: 120, shear_hold: "110분", process_ok: ["slitting"] }
+        ];
+
+        let activeTab = "diagnostic";
+        let sequenceState = "pre";
+        let sfeTotalResult = 0;
+        let scaleAngle = 0;
+        let polymerPropChart = null;
+        let ftirSpectrumChart = null;
+
+        const liquidParams = { water: { total: 72.8, disp: 21.8, polar: 51.0 }, diiodo: { total: 50.8, disp: 50.4, polar: 0.4 } };
+        const monomerTgs = { ba: 219.15, eha: 203.15, aa: 379.15, mma: 378.15 };
+
+        window.onload = function() {
+            const canvas3d = document.getElementById('canvas-3d-topography');
+            let isDragging = false;
+            let startX = 0;
+            canvas3d.addEventListener('mousedown', (e) => { isDragging = true; startX = e.clientX; });
+            window.addEventListener('mouseup', () => isDragging = false);
+            canvas3d.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const diff = e.clientX - startX;
+                scaleAngle += diff * 0.01;
+                startX = e.clientX;
+                draw3DTopography();
+            });
+
+            runOWRK(); updateRoughnessValues(); draw3DTopography(); executeMultiMatch(); runPolymerSynthesis();
+        };
+
+        function setSequenceState(state) {
+            sequenceState = state;
+            const preBtn = document.getElementById('seq-btn-pre');
+            const postBtn = document.getElementById('seq-btn-post');
+            const statusIndicator = document.getElementById('seq-status');
+
+            if (state === 'pre') {
+                preBtn.className = "btn btn-emerald";
+                postBtn.className = "btn btn-outline";
+                statusIndicator.innerText = "상태: 액적 투하 전 (Pre-drop)";
+                statusIndicator.className = "badge emerald";
+            } else {
+                preBtn.className = "btn btn-outline";
+                postBtn.className = "btn btn-emerald";
+                statusIndicator.innerText = "상태: 액적 투하 완료 (Post-drop)";
+                statusIndicator.className = "badge indigo";
+            }
+            runOWRK();
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            document.getElementById(`tab-btn-${tabId}`).classList.add('active');
+            activeTab = tabId;
+
+            if (tabId === 'synthesis') {
+                setTimeout(() => { initPolymerPropertiesChart(); initFtirSpectrumChart(); runPolymerSynthesis(); }, 50);
+            }
+        }
+
+        function runOWRK() {
+            const wDeg = parseFloat(document.getElementById('angle-water').value);
+            const dDeg = parseFloat(document.getElementById('angle-diiodo').value);
+            document.getElementById('val-water').innerText = wDeg + "°";
+            document.getElementById('val-diiodo').innerText = dDeg + "°";
+
+            drawSessileDrop('canvas-drop-water', wDeg, '#38bdf8');
+            drawSessileDrop('canvas-drop-diiodo', dDeg, '#eab308');
+
+            if (sequenceState === 'pre') {
+                document.getElementById('res-disp').innerText = "대기 중";
+                document.getElementById('res-polar').innerText = "대기 중";
+                document.getElementById('res-total').innerText = "대기 중";
+                return;
+            }
+
+            const wRad = wDeg * Math.PI / 180; const dRad = dDeg * Math.PI / 180;
+            const xW = Math.sqrt(liquidParams.water.polar / liquidParams.water.disp);
+            const yW = (liquidParams.water.total * (1 + Math.cos(wRad))) / (2 * Math.sqrt(liquidParams.water.disp));
+            const xD = Math.sqrt(liquidParams.diiodo.polar / liquidParams.diiodo.disp);
+            const yD = (liquidParams.diiodo.total * (1 + Math.cos(dRad))) / (2 * Math.sqrt(liquidParams.diiodo.disp));
+
+            let sfePolarSqrt = (yW - yD) / (xW - xD);
+            let sfeDispSqrt = yD - (xD * sfePolarSqrt);
+
+            if (sfePolarSqrt < 0) sfePolarSqrt = 0; if (sfeDispSqrt < 0) sfeDispSqrt = 0;
+
+            const sfePolar = sfePolarSqrt * sfePolarSqrt;
+            const sfeDisp = sfeDispSqrt * sfeDispSqrt;
+            const sfeTotal = sfePolar + sfeDisp;
+            sfeTotalResult = sfeTotal;
+
+            document.getElementById('res-disp').innerText = sfeDisp.toFixed(2) + " dyne/cm";
+            document.getElementById('res-polar').innerText = sfePolar.toFixed(2) + " dyne/cm";
+            document.getElementById('res-total').innerText = sfeTotal.toFixed(2) + " dyne/cm";
+        }
+
+        function drawSessileDrop(canvasId, angleDeg, color) {
+            const canvas = document.getElementById(canvasId); const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const w = canvas.width; const h = canvas.height;
+
+            ctx.strokeStyle = '#475569'; ctx.lineWidth = 2; ctx.beginPath();
+            ctx.moveTo(0, h - 5); ctx.lineTo(w, h - 5); ctx.stroke();
+
+            const angleRad = angleDeg * Math.PI / 180; const halfW = w / 3;
+            const hDrop = halfW * Math.tan(angleRad / 2);
+
+            ctx.fillStyle = color + '22'; ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.beginPath();
+            if (angleDeg < 90) {
+                const r = (halfW * halfW + hDrop * hDrop) / (2 * hDrop);
+                const cy = h - 5 + r - hDrop;
+                const startAngle = Math.PI + Math.asin(halfW / r); const endAngle = 2 * Math.PI - Math.asin(halfW / r);
+                ctx.arc(w / 2, cy, r, startAngle, endAngle);
+            } else {
+                const r = halfW / Math.sin(Math.PI - angleRad);
+                const cy = h - 5 + r * Math.cos(Math.PI - angleRad);
+                const startAngle = Math.PI + (Math.PI - angleRad); const endAngle = 2 * Math.PI - (Math.PI - angleRad);
+                ctx.arc(w / 2, cy, r, startAngle, endAngle);
+            }
+            ctx.lineTo(w/2 + halfW, h - 5); ctx.lineTo(w/2 - halfW, h - 5); ctx.fill(); ctx.stroke();
+        }
+
+        function updateRoughnessValues() {
+            const rawRa = parseFloat(document.getElementById('input-ra').value);
+            const gloss = parseFloat(document.getElementById('input-gloss').value);
+            document.getElementById('lbl-ra').innerText = (rawRa / 100).toFixed(2) + " ㎛";
+            document.getElementById('lbl-gloss').innerText = gloss + " GU";
+            draw3DTopography();
+        }
+
+        function draw3DTopography() {
+            const canvas = document.getElementById('canvas-3d-topography'); const ctx = canvas.getContext('2d');
+            canvas.width = canvas.parentElement.clientWidth; canvas.height = canvas.parentElement.clientHeight;
+            const w = canvas.width; const h = canvas.height; ctx.clearRect(0, 0, w, h);
+
+            const gridX = 24; const gridY = 24; const center = { x: w / 2, y: h / 2 + 30 };
+            const angle = scaleAngle;
+            const ra = parseFloat(document.getElementById('input-ra').value) / 100;
+            const gloss = parseFloat(document.getElementById('input-gloss').value);
+
+            for (let i = -gridX/2; i < gridX/2; i++) {
+                ctx.beginPath();
+                for (let j = -gridY/2; j < gridY/2; j++) {
+                    const x = i * (w / 40); const y = j * (h / 40);
+                    const rotX = x * Math.cos(angle) - y * Math.sin(angle); const rotY = x * Math.sin(angle) + y * Math.cos(angle);
+                    const term1 = Math.sin(i * 0.4) * Math.cos(j * 0.4); const term2 = Math.sin(i * 0.8) * 0.3;
+                    const z = (term1 + term2) * ra * 25 * (gloss / 400);
+                    const isoX = center.x + rotX; const isoY = center.y + rotY * 0.5 - z;
+                    if (j === -gridY/2) ctx.moveTo(isoX, isoY); else ctx.lineTo(isoX, isoY);
+                }
+                ctx.strokeStyle = `rgba(16, 185, 129, ${0.15 + (ra * 0.4)})`; ctx.stroke();
+            }
+        }
+
+        function loadSubstrateTemplate(key) {
+            const profiles = {
+                sus_ba: { ra_md: 0.02, ra_td: 0.04, gloss_md: 580, gloss_td: 560, energy_md: 38, energy_td: 38 },
+                sus_2b: { ra_md: 0.08, ra_td: 0.13, gloss_md: 220, gloss_td: 170, energy_md: 32, energy_td: 32 },
+                sus_no4: { ra_md: 0.10, ra_td: 0.17, gloss_md: 320, gloss_td: 100, energy_md: 40, energy_td: 36 },
+                pcm_white: { ra_md: 0.08, ra_td: 0.08, gloss_md: 97.5, gloss_td: 95.6, energy_md: 32, energy_td: 32 }
+            };
+            const data = profiles[key]; if (!data) return;
+            document.getElementById('match-ra-md').value = data.ra_md; document.getElementById('match-ra-td').value = data.ra_td;
+            document.getElementById('match-gloss-md').value = data.gloss_md; document.getElementById('match-gloss-td').value = data.gloss_td;
+            document.getElementById('match-energy-md').value = data.energy_md; document.getElementById('match-energy-td').value = data.energy_td;
+            executeMultiMatch();
+        }
+
+        function executeMultiMatch() {
+            const q = {
+                ra_md: parseFloat(document.getElementById('match-ra-md').value), ra_td: parseFloat(document.getElementById('match-ra-td').value),
+                gloss_md: parseFloat(document.getElementById('match-gloss-md').value), gloss_td: parseFloat(document.getElementById('match-gloss-td').value),
+                energy_md: parseFloat(document.getElementById('match-energy-md').value), energy_td: parseFloat(document.getElementById('match-energy-td').value)
+            };
+
+            const keys = ["ra_md", "ra_td", "gloss_md", "gloss_td", "energy_md", "energy_td"]; const stats = {};
+            keys.forEach(k => {
+                const vals = rawSubstrateDatabase.map(x => x[k]);
+                const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
+                const std = Math.sqrt(vals.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b, 0) / vals.length) || 1.0;
+                stats[k] = { mean, std };
+            });
+
+            const mappedResults = rawSubstrateDatabase.map(ref => {
+                let dotProductScaled = 0; let normQScaled = 0; let normRefScaled = 0;
+                let dotProductRaw = 0; let normQRaw = 0; let normRefRaw = 0;
+                keys.forEach(k => {
+                    const zQ = (q[k] - stats[k].mean) / stats[k].std; const zRef = (ref[k] - stats[k].mean) / stats[k].std;
+                    dotProductScaled += zQ * zRef; normQScaled += zQ * zQ; normRefScaled += zRef * zRef;
+                    dotProductRaw += q[k] * ref[k]; normQRaw += q[k] * q[k]; normRefRaw += ref[k] * ref[k];
+                });
+                const simScaled = dotProductScaled / (Math.sqrt(normQScaled) * Math.sqrt(normRefScaled));
+                const simRaw = dotProductRaw / (Math.sqrt(normQRaw) * Math.sqrt(normRefRaw));
+                return { ...ref, sim_scaled: isNaN(simScaled) ? 0 : simScaled, sim_raw: isNaN(simRaw) ? 0 : simRaw };
+            });
+
+            mappedResults.sort((a, b) => b.sim_scaled - a.sim_scaled);
+            const topMatch = mappedResults[0]; const oldMatch = [...mappedResults].sort((a, b) => b.sim_raw - a.sim_raw)[0];
+
+            if (topMatch.name !== oldMatch.name) {
+                document.getElementById('raw-match-indicator').innerText = `왜곡 감지 (오검출: ${oldMatch.name})`;
+                document.getElementById('raw-match-indicator').className = "info-val red";
+            } else {
+                document.getElementById('raw-match-indicator').innerText = "보정 매칭 일치";
+                document.getElementById('raw-match-indicator').className = "info-val emerald";
+            }
+
+            const tbodySub = document.getElementById('substrate-match-tbody'); tbodySub.innerHTML = '';
+            mappedResults.forEach((res, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = idx === 0 ? "highlight-row" : "";
+                const percent = (Math.max(0, res.sim_scaled) * 100).toFixed(1) + "%";
+                const cleanBadge = res.is_clean === "정상" ? `<span class="badge emerald">정상</span>` : `<span class="badge red">${res.is_clean}</span>`;
+                tr.innerHTML = `
+                    <td class="mono">#0${idx + 1}</td><td>${res.name} (${res.thickness}T)</td>
+                    <td class="mono">${res.ra_md}/${res.ra_td}</td><td class="mono">${res.gloss_md}/${res.gloss_td}</td>
+                    <td class="mono" style="color:var(--accent-emerald);">${percent}</td><td class="right">${cleanBadge}</td>
+                `;
+                tbodySub.appendChild(tr);
+            });
+            filterAndDisplayTapes(topMatch);
+        }
+
+        function filterAndDisplayTapes(targetSubstrate) {
+            const isDrawingNeeded = document.getElementById('process-drawing').checked;
+            const isBendingNeeded = document.getElementById('process-bending').checked;
+            const scoredTapes = tapeDatabase.map(tape => {
+                let matchScore = 100;
+                if (isDrawingNeeded && !tape.process_ok.includes("drawing")) matchScore -= 40;
+                if (isBendingNeeded && !tape.process_ok.includes("bending")) matchScore -= 30;
+                if (targetSubstrate.sfe_md <= 34 && tape.base_adhesion < 50) matchScore -= 20;
+                if (targetSubstrate.gloss_md >= 500 && tape.max_peel > 80) matchScore -= 25;
+                return { ...tape, score: Math.max(0, matchScore) };
+            });
+            scoredTapes.sort((a, b) => b.score - a.score);
+            const tbodyTape = document.getElementById('tape-match-tbody'); tbodyTape.innerHTML = '';
+            scoredTapes.forEach((tape, idx) => {
+                const tr = document.createElement('tr'); tr.className = idx === 0 ? "highlight-row-alt" : "";
+                const scoreColor = tape.score >= 80 ? "color:#34d399;" : (tape.score >= 50 ? "color:#fbbf24;" : "color:#f87171;");
+                const suitabilityBadges = tape.process_ok.map(p => `<span class="badge">${p}</span>`).join(' ');
+                tr.innerHTML = `
+                    <td style="font-weight:600;">${tape.name}</td><td class="mono">${tape.thickness} ㎛</td>
+                    <td>${tape.polymer} <span style="font-size:10px; color:var(--text-muted);">(${tape.tg}℃)</span></td>
+                    <td class="mono">${tape.base_adhesion} gf/25mm</td><td><div style="display:flex;gap:4px;">${suitabilityBadges}</div></td>
+                    <td class="mono right" style="${scoreColor} font-weight:700;">${tape.score} pts</td>
+                `;
+                tbodyTape.appendChild(tr);
+            });
+        }
+
+        function initPolymerPropertiesChart() {
+            const ctx = document.getElementById('chart-polymer-properties').getContext('2d');
+            if (polymerPropChart) polymerPropChart.destroy();
+            polymerPropChart = new Chart(ctx, {
+                type: 'bar',
+                data: { labels: ['초기점착력 (Tack)', '박리 강도 (Peel)', '유지 전단력 (Shear)', '내열 내후성'], datasets: [{ label: '예측치', data: [70, 60, 50, 45], backgroundColor: 'rgba(16, 185, 129, 0.4)', borderColor: 'rgb(16, 185, 129)', borderWidth: 1.5 }] },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 100, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }, x: { grid: { display: false }, ticks: { color: '#94a3b8' } } }, plugins: { legend: { display: false } } }
+            });
+        }
+
+        function initFtirSpectrumChart() {
+            const ctx = document.getElementById('chart-ftir-spectrum').getContext('2d');
+            if (ftirSpectrumChart) ftirSpectrumChart.destroy();
+            ftirSpectrumChart = new Chart(ctx, {
+                type: 'line',
+                data: { labels: Array.from({length: 50}, (_, i) => 1700 + i * 1.5), datasets: [{ label: '실측 신호', data: [], borderColor: '#ffffff', borderWidth: 2, pointRadius: 0, fill: false }, { label: '기저 피크', data: [], borderColor: 'rgb(139, 92, 246)', borderDash: [4, 4], borderWidth: 1.5, pointRadius: 0, fill: false }] },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { min: 0, max: 1.2, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }, x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } } }, plugins: { legend: { labels: { color: '#94a3b8' } } } }
+            });
+        }
+
+        function runPolymerSynthesis() {
+            let ba = parseFloat(document.getElementById('blend-ba').value); let eha = parseFloat(document.getElementById('blend-eha').value);
+            let aa = parseFloat(document.getElementById('blend-aa').value); let mma = parseFloat(document.getElementById('blend-mma').value);
+            const sum = ba + eha + aa + mma; if (sum === 0) return;
+            const wBa = ba / sum; const wEha = eha / sum; const wAa = aa / sum; const wMma = mma / sum;
+
+            document.getElementById('blend-val-ba').innerText = (wBa * 100).toFixed(0) + "%"; document.getElementById('blend-val-eha').innerText = (wEha * 100).toFixed(0) + "%";
+            document.getElementById('blend-val-aa').innerText = (wAa * 100).toFixed(0) + "%"; document.getElementById('blend-val-mma').innerText = (wMma * 100).toFixed(0) + "%";
+
+            const inverseTg = (wBa / monomerTgs.ba) + (wEha / monomerTgs.eha) + (wAa / monomerTgs.aa) + (wMma / monomerTgs.mma);
+            const tgCelsius = (1 / inverseTg) - 273.15;
+            document.getElementById('blend-calculated-tg').innerText = tgCelsius.toFixed(1) + " ℃";
+
+            let tackScore = Math.max(10, Math.min(100, 100 - (tgCelsius + 65) * 1.5));
+            let peelScore = Math.max(10, Math.min(100, 80 - Math.abs(tgCelsius + 45) * 1.2));
+            let shearScore = Math.max(5, Math.min(100, (tgCelsius + 65) * 1.8 + (wAa * 300)));
+
+            if (polymerPropChart) { polymerPropChart.data.datasets[0].data = [tackScore.toFixed(1), peelScore.toFixed(1), shearScore.toFixed(1), (60 + wAa * 50).toFixed(1)]; polymerPropChart.update(); }
+            updateFtirDeconvolution(wBa, wEha, wAa, wMma);
+        }
+
+        function updateFtirDeconvolution(wBa, wEha, wAa, wMma) {
+            if (!ftirSpectrumChart) return;
+            const xVals = ftirSpectrumChart.data.labels;
+            const simulatedRaw = xVals.map(x => (wAa * 1.5 * Math.exp(-Math.pow(x - 1705, 2) / 100)) + ((wBa + wEha + wMma) * 1.0 * Math.exp(-Math.pow(x - 1735, 2) / 80)) + ((Math.random() - 0.5) * 0.02) + 0.05);
+            const simulatedDeconv = xVals.map(x => ((wBa + wEha + wMma) * 1.0 * Math.exp(-Math.pow(x - 1735, 2) / 80) + 0.05));
+            ftirSpectrumChart.data.datasets[0].data = simulatedRaw; ftirSpectrumChart.data.datasets[1].data = simulatedDeconv; ftirSpectrumChart.update();
+        }
+    </script>
+</body>
+</html>

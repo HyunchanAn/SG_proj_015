@@ -178,3 +178,8 @@
 2. macOS 로컬 테스트 및 CI/CD 점검
    - 로컬 E2E 테스트 및 단위 테스트 통과 (Abort trap 에러 미발생)
    - GitHub Actions CI/CD 파이프라인 런타임 유효성 재확인 완료
+
+[2026-07-17]
+- demo_ui 디렉토리 내 방치된 임시 테스트 스크립트(do_refactor 시리즈 등) 일괄 삭제 및 정리
+- demo_ui/ui_components/input_panel.py 파일에 CVAE 초고속 역설계 및 NSGA-II 다목적 최적화 버튼 신설
+- 014 백엔드 신규 프록시 API와 통신하여 결과를 즉각적으로 화면에 렌더링하도록 JSON 응답 연결 구성 완료
