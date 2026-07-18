@@ -48,8 +48,10 @@ def render_archive_panel(t):
 
     if st.button("🚀 자동화 데모 전체 실행 (HL, 2B, BA) 및 자동 아카이빙", use_container_width=True):
         substrates_to_run = ["HL", "2B", "BA"]
-        archive_dir = Path("/Users/hyunchanan/Documents/GitHub/SG_proj_015/reports_archive/demo_reports")
-        archive_dir.mkdir(parents=True, exist_ok=True)
+        script_dir = Path(__file__).resolve().parent
+        archive_dir = script_dir.parents[1] / "demo_reports"
+        if not archive_dir.exists():
+            archive_dir.mkdir(parents=True, exist_ok=True)
         orchestrator_url = "http://localhost:8024/orchestrate"
 
         progress_bar = st.progress(0)

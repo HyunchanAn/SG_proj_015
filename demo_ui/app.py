@@ -45,8 +45,8 @@ def auto_run_e2e_background(sub_id):
     result = res.json()
     status = result.get("status", "error")
     rev_data = result.get("reverse_engineered_result", {}) if status == "matched" else result.get("result", {})
-    
-    archive_dir = Path("/Users/hyunchanan/Documents/GitHub/SG_proj_015/reports_archive/demo_reports")
+    script_dir = Path(__file__).resolve().parent
+    archive_dir = script_dir.parent / "demo_reports"
     archive_dir.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"demo_e2e_report_{sub_id}_{timestamp}.md"
