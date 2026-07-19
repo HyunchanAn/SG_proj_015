@@ -1,4 +1,5 @@
 ![Status](https://img.shields.io/badge/Status-v1.0%20Release-brightgreen) ![Python](https://img.shields.io/badge/Python-3.12%2B-blue) ![Backend](https://img.shields.io/badge/Backend-FastAPI-red) ![UI](https://img.shields.io/badge/UI-Streamlit-orange) ![CI/CD Pipeline](https://img.shields.io/badge/CI%2FCD%20Pipeline-passing-brightgreen?logo=github)
+![Hardware](https://img.shields.io/badge/Hardware-Mac_M2_Pro_%7C_Win_RTX5080-lightgrey)
 
 # SG_proj_015: 관제탑 (Frontend Control Tower)
 
@@ -144,3 +145,5 @@ flowchart TD
    - `e:/Github/SG_proj_015/demo_ui/prototype/SG_Adhesion_Nexus_Prototype.html` 파일을 크롬/엣지 등의 브라우저에서 직접 열어 사용합니다.
    - 화면 우측 상단의 "통합 AI 추론 실행 (014 연동)" 버튼을 누르면 실시간 연동 테스트가 가능합니다.
 
+---
+*Last Updated: 2026-07-19 (Hybrid Environment & MSA Integration)*
