@@ -7,3 +7,7 @@ demo_ui/refactor.py
 raw_data/
 *.db
 .env
+__pycache__/
+*.log
+.coverage
+.pytest_cache/
