@@ -176,22 +176,11 @@ def generate_vsams_visual(img_bytes: bytes) -> bytes:
 
 # Actual monomer recipe querying 004 SQLite database and seeded recipes
 def get_actual_product_recipe(product_name: str) -> dict[str, float]:
-    db_path = "/Users/hyunchanan/Documents/GitHub/SG_proj_004/sg_proj_004.db"
-    if not os.path.exists(db_path):
-        recipes = {
-            "SGV218ME": {"2-EHA": 65.0, "BA": 25.0, "MMA": 7.0, "AA": 3.0},
-            "SGO530": {"2-EHA": 50.0, "BA": 40.0, "MMA": 6.0, "AA": 4.0},
-            "SGE615": {"2-EHA": 70.0, "BA": 20.0, "MMA": 8.0, "AA": 2.0}
-        }
-        if product_name in recipes:
-            return recipes[product_name]
-        val = sum(ord(c) for c in product_name) % 10
-        return {"2-EHA": 55.0 + val, "BA": 35.0 - val, "MMA": 7.0, "AA": 3.0}
-
+    import psycopg2
     try:
-        conn = sqlite3.connect(db_path)
+        conn = psycopg2.connect(host="localhost", port=5433, database="sg_proj_004_db", user="sg_user", password="sg_password")
         cursor = conn.cursor()
-        cursor.execute("SELECT adhesive FROM our_products WHERE product_name = ?", (product_name,))
+        cursor.execute("SELECT adhesive FROM our_products WHERE product_name = %s", (product_name,))
         row = cursor.fetchone()
         if not row or not row[0]:
             conn.close()
@@ -199,7 +188,7 @@ def get_actual_product_recipe(product_name: str) -> dict[str, float]:
             return {"2-EHA": 55.0 + val, "BA": 35.0 - val, "MMA": 7.0, "AA": 3.0}
             
         adhesive_code = str(row[0]).strip().replace(".0", "")
-        cursor.execute("SELECT formula_data FROM adhesive_recipes WHERE adhesive_code = ?", (adhesive_code,))
+        cursor.execute("SELECT formula_data FROM adhesive_recipes WHERE adhesive_code = %s", (adhesive_code,))
         recipe_row = cursor.fetchone()
         conn.close()
         
@@ -226,11 +215,9 @@ def get_actual_product_recipe(product_name: str) -> dict[str, float]:
 
 # Load master adherends directly from 004 SQLite database to eliminate all Excel actions
 def load_adherend_master_from_db() -> list[dict]:
-    db_path = "/Users/hyunchanan/Documents/GitHub/SG_proj_004/sg_proj_004.db"
-    if not os.path.exists(db_path):
-        return []
+    import psycopg2
     try:
-        conn = sqlite3.connect(db_path)
+        conn = psycopg2.connect(host="localhost", port=5433, database="sg_proj_004_db", user="sg_user", password="sg_password")
         cursor = conn.cursor()
         cursor.execute("SELECT classification, product_name, company, thickness_mm, roughness_md, gloss_md, surface_energy_md FROM adherend_properties")
         rows = cursor.fetchall()

@@ -59,7 +59,8 @@ def render_input_panel(t):
         sub_id = st.selectbox(t["sub_id"], options=adherend_list, index=def_sub_idx, disabled=True)
 
         sub_series = st.selectbox(t["sub_series"], options=["SGV", "SGO", "SGE"], index=0)
-        thickness = st.number_input(t["thickness"], min_value=10.0, max_value=500.0, value=100.0, step=10.0)
+        thickness = st.number_input("도포 두께 (um)", min_value=1.0, max_value=500.0, value=30.0, step=1.0)
+        crosslinker_ratio = st.slider("경화제 비율 (%)", min_value=0.0, max_value=10.0, value=1.0, step=0.1)
 
         finish_opts = ["Hairline", "Mirror", "BA", "2B", "2D"]
         def_idx = 3
@@ -143,7 +144,9 @@ def render_input_panel(t):
                     "fixed_context": {
                         "박리_각도": 180.0,
                         "온도": 80.0,
-                        "반응시간": 5.0
+                        "반응시간": 5.0,
+                        "도포량(um)": thickness,
+                        "경화제_비율(%)": crosslinker_ratio
                     }
                 }
             elif submit_nsga2:
@@ -158,7 +161,9 @@ def render_input_panel(t):
                     "fixed_context": {
                         "박리_각도": 180.0,
                         "온도": 80.0,
-                        "반응시간": 5.0
+                        "반응시간": 5.0,
+                        "도포량(um)": thickness,
+                        "경화제_비율(%)": crosslinker_ratio
                     }
                 }
 

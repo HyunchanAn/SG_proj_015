@@ -47,7 +47,7 @@ def check_service_status() -> dict[str, bool]:
         "003 (V-SAMS Vision)": 8003,
         "004 (Database API)": 8004,
         "005 (Anomaly Detect)": 8005,
-        "006 (TransPolymer GNN)": 8506,
+        "006 (TransPolymer GNN)": 8006,
         "007 (SG-TERRA 3D)": 8007,
         "008 (Shear Holding QC)": 8008,
         "009 (IR Simulator)": 8009,

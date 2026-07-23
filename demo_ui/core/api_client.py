@@ -52,7 +52,7 @@ def start_local_orchestrator():
         pass
         
     logger.info("Starting local orchestrator...")
-    cmd = "nohup /opt/homebrew/Caskroom/miniconda/base/bin/python3 /Users/hyunchanan/Documents/GitHub/SG_proj_014/local_orchestrator.py > /Users/hyunchanan/Documents/GitHub/SG_proj_014/orchestrator.log 2>&1 &"
+    cmd = "cd /Users/hyunchanan/Documents/GitHub/SG_proj_014 && export HF_TOKEN=$(cat ~/.cache/huggingface/token) && nohup /opt/homebrew/Caskroom/miniconda/base/bin/python3 -m uvicorn src.main:app --host 0.0.0.0 --port 8024 > orchestrator.log 2>&1 &"
     os.system(cmd)
     return True
 
@@ -105,12 +105,9 @@ st.set_page_config(
 # Load master adherends directly from 004 SQLite database to eliminate all Excel actions
 @st.cache_data(ttl=3600)
 def load_adherend_master_from_db() -> list[dict]:
-    db_path = "/Users/hyunchanan/Documents/GitHub/SG_proj_004/sg_proj_004.db"
-    if not os.path.exists(db_path):
-        return []
-    import sqlite3
+    import psycopg2
     try:
-        conn = sqlite3.connect(db_path)
+        conn = psycopg2.connect(host="localhost", port=5433, database="sg_proj_004_db", user="sg_user", password="sg_password")
         cursor = conn.cursor()
         cursor.execute("SELECT classification, product_name, company, thickness_mm, roughness_md, gloss_md, surface_energy_md FROM adherend_properties")
         rows = cursor.fetchall()
