@@ -146,4 +146,4 @@ flowchart TD
    - 화면 우측 상단의 "통합 AI 추론 실행 (014 연동)" 버튼을 누르면 실시간 연동 테스트가 가능합니다.
 
 ---
-*Last Updated: 2026-07-19 (Hybrid Environment & MSA Integration)*
+*Last Updated: 2026-07-24 (Hybrid Environment & MSA Integration)*
