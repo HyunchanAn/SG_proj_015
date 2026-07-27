@@ -11,3 +11,14 @@ __pycache__/
 *.log
 .coverage
 .pytest_cache/
+
+# Global security rules
+*.csv
+*.xlsx
+*.pkl
+*.onnx
+*.pt
+data*/
+models/
+raw_data/
+*.db
