@@ -1,11 +1,12 @@
-from pathlib import Path
-import streamlit as st
-import requests
+import os
 import socket
+import sys
+from pathlib import Path
+
 import cv2
 import numpy as np
-import os
-import sys
+import requests
+import streamlit as st
 from loguru import logger
 from utils import *
 
@@ -15,24 +16,28 @@ sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_007")
 sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_010")
 
 try:
-    from deepdrop_sfe import AIContactAngleAnalyzer, PerspectiveCorrector, DropletPhysics
     import torch
+    from deepdrop_sfe import (
+        AIContactAngleAnalyzer,
+        DropletPhysics,
+        PerspectiveCorrector,
+    )
 except ImportError:
     pass
 try:
+    import torch
     from vsams.analysis.surface_evaluator import SurfaceEvaluator
-    import torch
 except ImportError:
     pass
 try:
+    import torch
     from sg_terra.seg.sam2_wrapper import SAM2BaseWrapper
     from sg_terra.topo.depth_wrapper import DepthAnythingV2Wrapper
-    import torch
 except ImportError:
     pass
 try:
-    from src.matcher import SubstrateMatcher
     from src.data_loader import load_and_preprocess_data
+    from src.matcher import SubstrateMatcher
 except ImportError:
     pass
 
@@ -60,30 +65,34 @@ sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_007")
 sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_010")
 
 try:
-    from deepdrop_sfe import AIContactAngleAnalyzer, PerspectiveCorrector, DropletPhysics
     import torch
+    from deepdrop_sfe import (
+        AIContactAngleAnalyzer,
+        DropletPhysics,
+        PerspectiveCorrector,
+    )
     HAS_002_MODULE = True
 except ImportError:
     HAS_002_MODULE = False
 
 try:
-    from vsams.analysis.surface_evaluator import SurfaceEvaluator
     import torch
+    from vsams.analysis.surface_evaluator import SurfaceEvaluator
     HAS_003_MODULE = True
 except ImportError:
     HAS_003_MODULE = False
 
 try:
+    import torch
     from sg_terra.seg.sam2_wrapper import SAM2BaseWrapper
     from sg_terra.topo.depth_wrapper import DepthAnythingV2Wrapper
-    import torch
     HAS_007_MODULE = True
 except ImportError:
     HAS_007_MODULE = False
 
 try:
-    from src.matcher import SubstrateMatcher
     from src.data_loader import load_and_preprocess_data
+    from src.matcher import SubstrateMatcher
     HAS_010_MODULE = True
 except ImportError:
     HAS_010_MODULE = False
@@ -138,14 +147,14 @@ else:
 
 # Cache getters and physical solver helpers from modularized utils
 from utils import (
-    get_cached_models_007,
+    calculate_local_sfe_droplet,
+    calculate_local_terra_curvature,
+    calculate_local_vsams_roughness,
+    evaluate_material_id_010,
     generate_contour_overlay,
     generate_vsams_visual,
+    get_cached_models_007,
     load_adherend_master_from_db,
-    evaluate_material_id_010,
-    calculate_local_sfe_droplet,
-    calculate_local_vsams_roughness,
-    calculate_local_terra_curvature
 )
 
 # Custom CSS for Premium Mobile Aesthetics

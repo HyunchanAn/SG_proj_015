@@ -1,11 +1,12 @@
-import os
-import subprocess
-import time
-import signal
-import sys
 import argparse
-import requests
 import json
+import os
+import signal
+import subprocess
+import sys
+import time
+
+import requests
 from loguru import logger
 
 BASE_DIR = "/Users/hyunchanan/Documents/GitHub"

@@ -1,11 +1,12 @@
-import sys
-import pandas as pd
-import numpy as np
-from datetime import datetime
 import os
+import sys
 import warnings
-from tqdm import tqdm
+from datetime import datetime
+
+import numpy as np
+import pandas as pd
 from loguru import logger
+from tqdm import tqdm
 
 # Silence warnings and logs
 warnings.filterwarnings('ignore')
@@ -16,11 +17,11 @@ logger.add(sys.stderr, level="ERROR")
 sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_001/sg_polysim")
 from sg_polysim.engine import RecipeOptimizer
 
+
 def evaluate_subset(optimizer, df_subset, name, n_samples=15):
     # Filter valid rows
     df_subset = df_subset.dropna(subset=['test_점착력', 'syn_점도(cP)', 'syn_Tg'])
-    if len(df_subset) < n_samples:
-        n_samples = len(df_subset)
+    n_samples = min(n_samples, len(df_subset))
     
     np.random.seed(42)
     sampled_df = df_subset.sample(n=n_samples, random_state=42).reset_index(drop=True)

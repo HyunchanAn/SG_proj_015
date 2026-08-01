@@ -1,7 +1,7 @@
-import zipfile
-import xml.etree.ElementTree as ET
-import re
 import os
+import re
+import xml.etree.ElementTree as ET
+import zipfile
 
 pptx_path = r'E:\Github\260707_SG_AI를_이용한_피착재_분석_및_매칭과_제품_역설계_통합_서비스_개발.pptx'
 output_path = r'E:\Github\SG_proj_015\scratch\pptx_extracted.txt'

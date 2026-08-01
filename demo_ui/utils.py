@@ -1,9 +1,10 @@
-import streamlit as st
-import numpy as np
-import cv2
+import json
 import os
 import sys
-import json
+
+import cv2
+import numpy as np
+import streamlit as st
 from loguru import logger
 
 # Add SG_proj_002, SG_proj_003, SG_proj_007, and SG_proj_010 to sys.path to directly access modules
@@ -13,30 +14,34 @@ sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_007")
 sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_010")
 
 try:
-    from deepdrop_sfe import AIContactAngleAnalyzer, PerspectiveCorrector, DropletPhysics
     import torch
+    from deepdrop_sfe import (
+        AIContactAngleAnalyzer,
+        DropletPhysics,
+        PerspectiveCorrector,
+    )
     HAS_002_MODULE = True
 except ImportError:
     HAS_002_MODULE = False
 
 try:
-    from vsams.analysis.surface_evaluator import SurfaceEvaluator
     import torch
+    from vsams.analysis.surface_evaluator import SurfaceEvaluator
     HAS_003_MODULE = True
 except ImportError:
     HAS_003_MODULE = False
 
 try:
+    import torch
     from sg_terra.seg.sam2_wrapper import SAM2BaseWrapper
     from sg_terra.topo.depth_wrapper import DepthAnythingV2Wrapper
-    import torch
     HAS_007_MODULE = True
 except ImportError:
     HAS_007_MODULE = False
 
 try:
-    from src.matcher import SubstrateMatcher
     from src.data_loader import load_and_preprocess_data
+    from src.matcher import SubstrateMatcher
     HAS_010_MODULE = True
 except ImportError:
     HAS_010_MODULE = False

@@ -1,8 +1,10 @@
-import streamlit as st
-import requests
+import concurrent.futures
 from datetime import datetime
 from pathlib import Path
-import concurrent.futures
+
+import requests
+import streamlit as st
+
 
 def auto_run_e2e_background(sub_id):
     orchestrator_url = "http://localhost:8024/orchestrate"
@@ -95,12 +97,12 @@ def auto_run_e2e_background(sub_id):
 
 from core.api_client import start_local_orchestrator
 from core.state_manager import init_state
-from ui_components.network_status import render_health_check
-from ui_components.vision_panel import render_step1_vision
-from ui_components.input_panel import render_input_panel
-from ui_components.results_panel import render_results_panel
-from ui_components.archive_panel import render_archive_panel
 from translations import TRANSLATIONS
+from ui_components.archive_panel import render_archive_panel
+from ui_components.input_panel import render_input_panel
+from ui_components.network_status import render_health_check
+from ui_components.results_panel import render_results_panel
+from ui_components.vision_panel import render_step1_vision
 
 start_local_orchestrator()
 init_state()

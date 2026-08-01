@@ -17,7 +17,7 @@ repos = {
 
 def restore_logs():
     print("Restoring development_log.txt files in all repos to clean git state...")
-    for repo in repos.keys():
+    for repo in repos:
         subprocess.run(["git", "checkout", "--", "development_log.txt"], cwd=repo)
     print("Restoration complete.")
 

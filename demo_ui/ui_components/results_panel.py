@@ -1,7 +1,8 @@
-import streamlit as st
+import sys
+
 import pandas as pd
 import plotly.graph_objects as go
-import sys
+import streamlit as st
 from utils import *
 
 sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_002")
@@ -10,24 +11,28 @@ sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_007")
 sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_010")
 
 try:
-    from deepdrop_sfe import AIContactAngleAnalyzer, PerspectiveCorrector, DropletPhysics
     import torch
+    from deepdrop_sfe import (
+        AIContactAngleAnalyzer,
+        DropletPhysics,
+        PerspectiveCorrector,
+    )
 except ImportError:
     pass
 try:
+    import torch
     from vsams.analysis.surface_evaluator import SurfaceEvaluator
-    import torch
 except ImportError:
     pass
 try:
+    import torch
     from sg_terra.seg.sam2_wrapper import SAM2BaseWrapper
     from sg_terra.topo.depth_wrapper import DepthAnythingV2Wrapper
-    import torch
 except ImportError:
     pass
 try:
-    from src.matcher import SubstrateMatcher
     from src.data_loader import load_and_preprocess_data
+    from src.matcher import SubstrateMatcher
 except ImportError:
     pass
 
