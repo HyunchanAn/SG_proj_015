@@ -1,4 +1,3 @@
-import sys
 
 def fix_file(filename):
     with open(filename, 'r') as f:

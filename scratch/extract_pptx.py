@@ -19,9 +19,9 @@ def extract_pptx_text(pptx_p, out_p):
             
             for slide_file in slide_files:
                 slide_num = re.findall(r'\d+', slide_file)[0]
-                out_f.write(f"\n=========================================\n")
+                out_f.write("\n=========================================\n")
                 out_f.write(f"SLIDE {slide_num} ({slide_file})\n")
-                out_f.write(f"=========================================\n")
+                out_f.write("=========================================\n")
                 
                 xml_content = zip_ref.read(slide_file)
                 root = ET.fromstring(xml_content)

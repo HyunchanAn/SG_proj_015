@@ -1,16 +1,7 @@
 import streamlit as st
 import requests
-import json
-import socket
-import pandas as pd
-import plotly.graph_objects as go
-import cv2
 import numpy as np
-import os
 import sys
-from loguru import logger
-import streamlit.components.v1 as components
-from translations import TRANSLATIONS
 from utils import *
 
 sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_002")
@@ -41,7 +32,7 @@ except ImportError:
     pass
 
 def render_input_panel(t):
-    from core.api_client import trigger_all_metrology_analyses_automatically, load_adherend_master_from_db
+    from core.api_client import load_adherend_master_from_db
     
     db_profiles = load_adherend_master_from_db()
     adherend_list = list(dict.fromkeys([p.get("product_name", "Unknown") for p in db_profiles]))

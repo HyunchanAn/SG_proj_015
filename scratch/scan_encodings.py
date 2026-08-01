@@ -1,5 +1,4 @@
 import os
-import glob
 
 repositories = [
     r"e:\Github\SG_integration_step1",

@@ -1,18 +1,7 @@
 import streamlit as st
 import requests
-import json
-import socket
-import pandas as pd
-import plotly.graph_objects as go
 from datetime import datetime
 from pathlib import Path
-from loguru import logger
-import streamlit.components.v1 as components
-import os
-import cv2
-import numpy as np
-import sys
-import subprocess
 import concurrent.futures
 
 def auto_run_e2e_background(sub_id):

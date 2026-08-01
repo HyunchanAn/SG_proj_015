@@ -1,4 +1,3 @@
-import os
 from pptx import Presentation
 
 path = r'E:\Github\260707_SG_AI를_이용한_피착재_분석_및_매칭과_제품_역설계_통합_서비스_개발.pptx'

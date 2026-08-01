@@ -1,4 +1,3 @@
-import os
 import subprocess
 
 repos_to_commit = [
@@ -30,9 +29,9 @@ def run_git(cwd, args):
 
 if __name__ == "__main__":
     for repo in repos_to_commit:
-        print(f"\n=========================================")
+        print("\n=========================================")
         print(f"Git operations for {repo}")
-        print(f"=========================================")
+        print("=========================================")
         
         # Check status
         ok, status_out = run_git(repo, ["status", "--porcelain"])

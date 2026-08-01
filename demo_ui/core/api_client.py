@@ -1,17 +1,12 @@
 from pathlib import Path
 import streamlit as st
 import requests
-import json
 import socket
-import pandas as pd
-import plotly.graph_objects as go
 import cv2
 import numpy as np
 import os
 import sys
 from loguru import logger
-import streamlit.components.v1 as components
-from translations import TRANSLATIONS
 from utils import *
 
 sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_002")
@@ -140,20 +135,12 @@ else:
     adherend_list = ["SUS304-2B", "SUS304-BA", "PCM Hairline (HL)", "AL5052"]
 
 # Translations dictionary
-from translations import TRANSLATIONS
 
 # Cache getters and physical solver helpers from modularized utils
 from utils import (
-    HAS_002_MODULE,
-    HAS_003_MODULE,
-    HAS_007_MODULE,
-    HAS_010_MODULE,
-    get_cached_analyzer_002,
-    get_cached_evaluator_003,
     get_cached_models_007,
     generate_contour_overlay,
     generate_vsams_visual,
-    get_actual_product_recipe,
     load_adherend_master_from_db,
     evaluate_material_id_010,
     calculate_local_sfe_droplet,

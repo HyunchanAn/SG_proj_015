@@ -1,17 +1,12 @@
 from pathlib import Path
 import streamlit as st
 import requests
-import json
-import socket
 import pandas as pd
 import plotly.graph_objects as go
 import cv2
 import numpy as np
-import os
 import sys
 from loguru import logger
-import streamlit.components.v1 as components
-from translations import TRANSLATIONS
 from utils import *
 
 sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_002")

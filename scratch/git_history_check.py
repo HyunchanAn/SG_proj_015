@@ -1,5 +1,4 @@
 import subprocess
-import os
 
 repos = [
     r'e:\Github\SG_proj_001',
@@ -18,9 +17,9 @@ def check_history():
     out_path = r'E:\Github\SG_proj_015\scratch\git_history_report.txt'
     with open(out_path, 'w', encoding='utf-8') as report:
         for repo in repos:
-            report.write(f"\n=========================================\n")
+            report.write("\n=========================================\n")
             report.write(f"Repo: {repo}\n")
-            report.write(f"=========================================\n")
+            report.write("=========================================\n")
             
             # Get git commits for development_log.txt
             try:

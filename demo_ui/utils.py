@@ -3,10 +3,8 @@ import numpy as np
 import cv2
 import os
 import sys
-import sqlite3
 import json
 from loguru import logger
-from PIL import Image
 
 # Add SG_proj_002, SG_proj_003, SG_proj_007, and SG_proj_010 to sys.path to directly access modules
 sys.path.append("/Users/hyunchanan/Documents/GitHub/SG_proj_002")
